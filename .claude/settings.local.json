@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(mkdir -p \"C:/WEB DEVELOPING/agencija/fluxel/lib\")",
+      "Bash(mkdir -p \"C:/WEB DEVELOPING/agencija/fluxel/components/ui\")",
+      "Bash(node -e \"require\\(''framer-motion''\\); require\\(''@paper-design/shaders-react''\\); require\\(''@radix-ui/react-slot''\\); require\\(''class-variance-authority''\\); require\\(''clsx''\\); require\\(''tailwind-merge''\\); console.log\\(''All deps OK''\\)\")",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm run:*)",
+      "Bash(node -e \"const l = require\\(''lucide-react''\\); console.log\\(Object.keys\\(l\\).filter\\(k => /instagram|facebook|twitter|linkedin|x$/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"const l = require\\(''lucide-react''\\); console.log\\(Object.keys\\(l\\).filter\\(k => /^\\(Share|Globe|Link|ExternalLink|AtSign|Hash|Rss\\)/i.test\\(k\\) && !k.startsWith\\(''Lucide''\\)\\).slice\\(0,15\\)\\)\")",
+      "Bash(python3:*)",
+      "Bash(py:*)",
+      "Bash(node -e \"const l = require\\(''lucide-react''\\); const needed = [''PhoneOff'',''MessageSquareX'',''CalendarX'',''Monitor'',''Clock'',''Calendar'',''Bell'',''Zap'',''Check'',''Mail'',''MapPin'',''Shield'',''Users'',''TrendingUp'',''Code2'',''Smartphone'',''Globe'',''RefreshCw'',''Award'',''Menu'',''Quote'',''Layout'',''ChevronRight'',''Headphones'',''BarChart2'']; needed.forEach\\(n => console.log\\(n, n in l ? ''✓'' : ''✗''\\)\\)\")"
+    ]
+  }
+}
