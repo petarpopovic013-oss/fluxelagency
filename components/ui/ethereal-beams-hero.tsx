@@ -7,6 +7,7 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import { PerspectiveCamera } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils.js"
 import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 
 // ── Beams 3D background ───────────────────────────────────────────────────────
 
@@ -159,9 +160,22 @@ vec3 getNormal(vec3 pos){vec3 curpos=getCurrentPos(pos);vec3 nextposX=getCurrent
 function PhoneMockup() {
   const dates = [null,null,null,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
   return (
-    <div className="relative hidden lg:flex items-center justify-center shrink-0">
-      <div className="absolute w-72 h-72 bg-cyan-400/15 rounded-full blur-3xl" />
-      <div className="relative w-[260px] h-[520px] bg-[#0d0d0d] rounded-[38px] border border-white/15 shadow-2xl shadow-black overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: -10 }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }}
+      transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex items-center justify-center shrink-0 mt-10 lg:mt-0"
+    >
+      {/* Glow rings */}
+      <div className="absolute w-72 h-72 bg-cyan-400/15 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute w-56 h-56 bg-cyan-400/10 rounded-full blur-2xl animate-[pulse_3s_ease-in-out_infinite_0.5s]" />
+
+      {/* Phone frame with float animation */}
+      <motion.div
+        animate={{ y: [0, -12, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="relative w-[220px] h-[440px] sm:w-[260px] sm:h-[520px] bg-[#0d0d0d] rounded-[38px] border border-white/15 shadow-2xl shadow-cyan-400/10 overflow-hidden"
+      >
         {/* Notch */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#0d0d0d] rounded-b-2xl z-10 flex items-center justify-center">
           <div className="w-8 h-1 rounded-full bg-white/10" />
@@ -171,15 +185,15 @@ function PhoneMockup() {
           {/* Header */}
           <div className="bg-black/60 px-4 pt-2 pb-2.5 border-b border-white/5">
             <p className="text-white/40 text-[9px] tracking-widest uppercase">Frizerski salon Ana</p>
-            <p className="text-white font-bold text-[13px]">Zakaži termin</p>
+            <p className="text-white font-bold text-[13px]">Zakazi termin</p>
           </div>
           {/* Service */}
           <div className="px-3 pt-3 pb-2">
             <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Usluga</p>
             <div className="space-y-1">
               <div className="bg-cyan-400/15 border border-cyan-400/40 rounded-lg px-2.5 py-1.5 flex justify-between items-center">
-                <span className="text-white text-[10px] font-medium">Žensko šišanje</span>
-                <span className="text-cyan-400 text-[9px]">45 min · 2500 RSD</span>
+                <span className="text-white text-[10px] font-medium">Zensko sisanje</span>
+                <span className="text-cyan-400 text-[9px]">45 min &middot; 2500 RSD</span>
               </div>
               {[["Bojenje kose","90 min"],["Feniranje","30 min"]].map(([s,t])=>(
                 <div key={s} className="bg-white/5 rounded-lg px-2.5 py-1.5 flex justify-between items-center">
@@ -194,7 +208,7 @@ function PhoneMockup() {
             <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Januar 2026</p>
             <div className="bg-white/5 rounded-xl p-2">
               <div className="grid grid-cols-7 mb-1">
-                {['P','U','S','Č','P','S','N'].map((d,i)=>(
+                {['P','U','S','\u010C','P','S','N'].map((d,i)=>(
                   <div key={i} className="text-center text-white/30 text-[8px]">{d}</div>
                 ))}
               </div>
@@ -212,7 +226,7 @@ function PhoneMockup() {
           </div>
           {/* Time slots */}
           <div className="px-3 pb-2">
-            <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Termini — čet 15 jan</p>
+            <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Termini &mdash; cet 15 jan</p>
             <div className="flex flex-wrap gap-1">
               {['09:00','10:30','12:00','14:00','15:30'].map((t,i)=>(
                 <span key={t} className={`px-2 py-1 rounded-lg text-[9px] font-medium ${
@@ -224,21 +238,38 @@ function PhoneMockup() {
           {/* CTA */}
           <div className="px-3 mt-auto pb-4">
             <div className="bg-cyan-400 rounded-xl py-2.5 text-center">
-              <span className="text-black font-bold text-[11px]">Potvrdi zakazivanje →</span>
+              <span className="text-black font-bold text-[11px]">Potvrdi zakazivanje &rarr;</span>
             </div>
-            <p className="text-white/25 text-[8px] text-center mt-1.5">Potvrda stiže SMS-om</p>
+            <p className="text-white/25 text-[8px] text-center mt-1.5">Potvrda stize SMS-om</p>
           </div>
         </div>
         {/* Home indicator */}
         <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-white/20 rounded-full" />
-      </div>
-      {/* Floating notification */}
-      <div className="absolute top-12 -right-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-3 py-2 shadow-xl">
+      </motion.div>
+
+      {/* Floating notification - animated */}
+      <motion.div
+        initial={{ opacity: 0, x: 40, scale: 0.8 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-8 -right-2 sm:top-12 sm:-right-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-3 py-2 shadow-xl"
+      >
         <p className="text-white/50 text-[8px]">Nova rezervacija</p>
-        <p className="text-white font-semibold text-[10px]">Marija M. · 10:30</p>
+        <p className="text-white font-semibold text-[10px]">Marija M. &middot; 10:30</p>
         <p className="text-cyan-400 text-[8px]">Upravo zakazano</p>
-      </div>
-    </div>
+      </motion.div>
+
+      {/* Second floating element - bottom left */}
+      <motion.div
+        initial={{ opacity: 0, x: -40, scale: 0.8 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-16 -left-4 sm:bottom-20 sm:-left-8 bg-emerald-500/15 backdrop-blur-xl border border-emerald-500/25 rounded-2xl px-3 py-2 shadow-xl"
+      >
+        <p className="text-emerald-400 text-[8px] font-semibold">+23% vise termina</p>
+        <p className="text-white/50 text-[8px]">ovog meseca</p>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -256,62 +287,103 @@ export default function EtherealBeamsHero() {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-0" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center pt-20">
+      <div className="relative z-10 flex min-h-screen items-center pt-20 pb-10">
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
 
             {/* Left: text */}
             <div className="flex-1 text-center lg:text-left">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 border border-cyan-400/30 px-4 py-2 text-sm text-cyan-400 mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 border border-cyan-400/30 px-4 py-2 text-sm text-cyan-400 mb-8"
+              >
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                Specijalizovani za mali servisni biznis u Srbiji
-              </div>
+                Specijalizovani za male servisne biznise u Srbiji
+              </motion.div>
 
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
+              {/* Headline - staggered word reveal */}
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6"
+              >
                 Koliko klijenata ste<br />
                 izgubili danas jer{" "}
-                <span className="text-cyan-400">nisu mogli da<br className="hidden sm:block" /> zakažu online?</span>
-              </h1>
+                <motion.span
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent animate-gradient-x"
+                >
+                  nisu mogli da<br className="hidden sm:block" /> zakažu online?
+                </motion.span>
+              </motion.h1>
 
               {/* Subheadline */}
-              <p className="text-lg sm:text-xl text-white/70 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-lg sm:text-xl text-white/70 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
+              >
                 Pravimo sistem za online zakazivanje i profesionalni web sajt koji radi za vas
-                <strong className="text-white"> 24/7</strong> — čak i dok spavate.
-              </p>
+                <strong className="text-white"> 24/7</strong> - čak i dok spavate.
+              </motion.p>
 
               {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8"
+              >
                 <a
                   href="#kontakt"
-                  className="group inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-200 shadow-lg shadow-cyan-400/20"
+                  className="group relative inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-cyan-400/25 hover:shadow-cyan-400/40 hover:scale-105"
                 >
-                  Zakazite besplatan razgovor
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="absolute inset-0 rounded-full bg-cyan-400/30 blur-xl group-hover:blur-2xl transition-all duration-300 -z-10" />
+                  Zakažite besplatan razgovor
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </a>
                 <a
                   href="#resenje"
-                  className="inline-flex items-center gap-2 border border-white/20 text-white/80 hover:text-white hover:border-white/40 font-medium text-base px-6 py-4 rounded-full transition-all duration-200 backdrop-blur-sm"
+                  className="inline-flex items-center gap-2 border border-white/20 text-white/80 hover:text-white hover:border-white/40 font-medium text-base px-6 py-4 rounded-full transition-all duration-300 backdrop-blur-sm hover:bg-white/5"
                 >
                   Pogledaj kako funkcioniše
                 </a>
-              </div>
+              </motion.div>
 
               {/* Social proof */}
-              <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 text-sm text-white/50">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="flex flex-col sm:flex-row items-center lg:items-start gap-4 text-sm text-white/50"
+              >
                 <div className="flex items-center gap-1.5">
                   {[...Array(5)].map((_,i)=>(
-                    <span key={i} className="text-cyan-400 text-base">★</span>
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.9 + i * 0.1, duration: 0.4, ease: "backOut" }}
+                      className="text-cyan-400 text-base"
+                    >
+                      ★
+                    </motion.span>
                   ))}
                   <span className="ml-1 text-white/70 font-medium">10+ zadovoljnih klijenata</span>
                 </div>
-                <span className="hidden sm:block text-white/20">·</span>
+                <span className="hidden sm:block text-white/20">&middot;</span>
                 <span>Dostupni 7 dana u nedelji</span>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Right: phone mockup */}
+            {/* Right: phone mockup - NOW VISIBLE ON ALL SCREENS */}
             <PhoneMockup />
 
           </div>

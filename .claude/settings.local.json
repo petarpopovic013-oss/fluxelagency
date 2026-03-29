@@ -11,7 +11,8 @@
       "Bash(node -e \"const l = require\\(''lucide-react''\\); console.log\\(Object.keys\\(l\\).filter\\(k => /^\\(Share|Globe|Link|ExternalLink|AtSign|Hash|Rss\\)/i.test\\(k\\) && !k.startsWith\\(''Lucide''\\)\\).slice\\(0,15\\)\\)\")",
       "Bash(python3:*)",
       "Bash(py:*)",
-      "Bash(node -e \"const l = require\\(''lucide-react''\\); const needed = [''PhoneOff'',''MessageSquareX'',''CalendarX'',''Monitor'',''Clock'',''Calendar'',''Bell'',''Zap'',''Check'',''Mail'',''MapPin'',''Shield'',''Users'',''TrendingUp'',''Code2'',''Smartphone'',''Globe'',''RefreshCw'',''Award'',''Menu'',''Quote'',''Layout'',''ChevronRight'',''Headphones'',''BarChart2'']; needed.forEach\\(n => console.log\\(n, n in l ? ''✓'' : ''✗''\\)\\)\")"
+      "Bash(node -e \"const l = require\\(''lucide-react''\\); const needed = [''PhoneOff'',''MessageSquareX'',''CalendarX'',''Monitor'',''Clock'',''Calendar'',''Bell'',''Zap'',''Check'',''Mail'',''MapPin'',''Shield'',''Users'',''TrendingUp'',''Code2'',''Smartphone'',''Globe'',''RefreshCw'',''Award'',''Menu'',''Quote'',''Layout'',''ChevronRight'',''Headphones'',''BarChart2'']; needed.forEach\\(n => console.log\\(n, n in l ? ''✓'' : ''✗''\\)\\)\")",
+      "Bash(npx next:*)"
     ]
   }
 }
