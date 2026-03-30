@@ -283,8 +283,8 @@ export default function EtherealBeamsHero() {
         <Beams beamWidth={2.5} beamHeight={18} beamNumber={15} lightColor="#ffffff" speed={2.5} noiseIntensity={2} scale={0.15} rotation={43} />
       </div>
       {/* Gradient overlays */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-0" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent z-0" />
 
       {/* Content */}
       <div className="relative z-10 flex min-h-screen items-center pt-20 pb-10">

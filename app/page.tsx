@@ -41,10 +41,10 @@ const IconX = ({ className = "w-4 h-4" }: SI) => (
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -55,10 +55,10 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 function SlideIn({ children, delay = 0, className = "", direction = "left" }: { children: React.ReactNode; delay?: number; className?: string; direction?: "left" | "right" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: direction === "left" ? -60 : 60, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, x: direction === "left" ? -30 : 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -69,10 +69,10 @@ function SlideIn({ children, delay = 0, className = "", direction = "left" }: { 
 function ScaleIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -190,7 +190,7 @@ function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/10 shadow-lg shadow-black/20" : "bg-transparent"
+        scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/[0.15] shadow-lg shadow-black/20" : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -206,7 +206,7 @@ function Navbar() {
           </motion.a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 px-2 py-1">
+          <nav className="hidden md:flex items-center gap-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/[0.15] px-2 py-1">
             {links.map((l, i) => (
               <motion.a
                 key={l.href}
@@ -251,7 +251,7 @@ function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10 px-6 py-4 space-y-1 overflow-hidden"
+            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/[0.15] px-6 py-4 space-y-1 overflow-hidden"
           >
             {links.map((l, i) => (
               <motion.a
@@ -332,7 +332,7 @@ const pains = [
 
 function PainSection() {
   return (
-    <section id="problem" className="py-28 bg-[#050505] relative overflow-hidden">
+    <section id="problem" className="py-28 bg-[#0c0d12] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -343,7 +343,7 @@ function PainSection() {
             Svaki dan bez sistema za zakazivanje<br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-red-400 to-rose-500 bg-clip-text text-transparent"> košta vas novac</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/75 text-lg max-w-2xl mx-auto">
             Razgovarali smo sa desetinama vlasnika malih biznisa u Srbiji. Evo šta čujemo iznova i iznova.
           </p>
         </FadeIn>
@@ -354,7 +354,7 @@ function PainSection() {
               <motion.div
                 whileHover={{ scale: 1.03, y: -5, borderColor: "rgba(239,68,68,0.3)" }}
                 transition={{ duration: 0.3 }}
-                className="h-full p-6 rounded-2xl bg-white/[0.03] border border-white/8 transition-all duration-300 group cursor-default"
+                className="h-full p-6 rounded-2xl bg-white/[0.07] border border-white/[0.15] transition-all duration-300 group cursor-default"
               >
                 <motion.div
                   whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
@@ -364,7 +364,7 @@ function PainSection() {
                   <Icon className="w-5 h-5 text-red-400" />
                 </motion.div>
                 <h3 className="text-white font-bold text-base mb-2 leading-snug">{title}</h3>
-                <p className="text-white/55 text-sm leading-relaxed">{body}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{body}</p>
               </motion.div>
             </ScaleIn>
           ))}
@@ -455,7 +455,7 @@ function SolutionSection() {
             Sistem koji radi umesto vas -<br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent"> čak i kad spavate</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/75 text-lg max-w-2xl mx-auto">
             Ovo nije lista usluga. Ovo je jedan integrisani sistem koji rešava svaki problem koji smo
             gore naveli - odjednom.
           </p>
@@ -467,7 +467,7 @@ function SolutionSection() {
               <motion.div
                 whileHover={{ scale: 1.02, y: -4 }}
                 transition={{ duration: 0.3 }}
-                className={`h-full p-7 rounded-2xl bg-white/[0.03] border border-white/8 hover:border-white/15 transition-all duration-300 group cursor-default ${colorMap[color].glow} hover:shadow-lg`}
+                className={`h-full p-7 rounded-2xl bg-white/[0.07] border border-white/[0.15] hover:border-white/15 transition-all duration-300 group cursor-default ${colorMap[color].glow} hover:shadow-lg`}
               >
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: 5 }}
@@ -498,18 +498,12 @@ function SolutionSection() {
         </div>
 
         <FadeIn>
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="text-center p-6 rounded-2xl bg-cyan-400/5 border border-cyan-400/20 relative overflow-hidden"
-          >
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute -inset-full bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent animate-shimmer" />
-            </div>
-            <p className="text-white text-lg font-medium relative">
+          <div className="text-center p-6 rounded-2xl bg-cyan-400/[0.08] border border-cyan-400/25">
+            <p className="text-white text-lg font-medium">
               Sve ovo funkcionise kao <span className="text-cyan-400 font-bold">jedan sistem</span> -
               bez da vi morate da brinete o tehnologiji.
             </p>
-          </motion.div>
+          </div>
         </FadeIn>
       </div>
     </section>
@@ -541,14 +535,14 @@ const steps = [
 
 function HowItWorksSection() {
   return (
-    <section id="proces" className="py-28 bg-[#050505] relative overflow-hidden">
+    <section id="proces" className="py-28 bg-[#0c0d12] relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeIn className="text-center mb-16">
           <SectionLabel>Kako do vašeg sistema</SectionLabel>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
             Samo <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">3 koraka</span> do sistema koji<br className="hidden sm:block" /> radi za vas
           </h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto">
+          <p className="text-white/75 text-lg max-w-xl mx-auto">
             Nema komplikacija. Nema tehničkih znanja koja su vam potrebna. Samo razgovor, izrada i rezultati.
           </p>
         </FadeIn>
@@ -568,7 +562,7 @@ function HowItWorksSection() {
               <motion.div
                 whileHover={{ scale: 1.04, y: -8 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative z-10 flex flex-col items-center text-center p-8 rounded-2xl bg-black border border-white/8 hover:border-cyan-400/30 transition-all duration-300 group"
+                className="relative z-10 flex flex-col items-center text-center p-8 rounded-2xl bg-black border border-white/[0.15] hover:border-cyan-400/30 transition-all duration-300 group"
               >
                 {/* Step number + icon */}
                 <div className="relative mb-6">
@@ -590,7 +584,7 @@ function HowItWorksSection() {
                   </motion.div>
                 </div>
                 <h3 className="text-white font-bold text-xl mb-3">{title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{body}</p>
+                <p className="text-white/75 text-sm leading-relaxed">{body}</p>
               </motion.div>
             </ScaleIn>
           ))}
@@ -676,7 +670,7 @@ function PortfolioSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
             Sistemi koje smo <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">već napravili</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/75 text-lg max-w-2xl mx-auto">
             Svaki projekat je bio konkretan problem. Svako rešenje je donelo merljive rezultate.
           </p>
         </FadeIn>
@@ -690,7 +684,7 @@ function PortfolioSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="block group rounded-2xl overflow-hidden bg-white/[0.03] border border-white/8 hover:border-white/20 transition-all duration-300 cursor-pointer"
+                className="block group rounded-2xl overflow-hidden bg-white/[0.07] border border-white/[0.15] hover:border-white/20 transition-all duration-300 cursor-pointer"
               >
                 {/* Mockup area */}
                 <div className={`h-48 bg-gradient-to-br ${gradient} relative overflow-hidden`}>
@@ -709,7 +703,7 @@ function PortfolioSection() {
                         <div className="text-7xl font-black text-white/10 leading-none">{letter}</div>
                         <div className="mt-2 inline-flex gap-1">
                           {tags.slice(0,2).map(t=>(
-                            <span key={t} className="text-[9px] bg-white/10 text-white/50 px-2 py-0.5 rounded-full">{t}</span>
+                            <span key={t} className="text-[9px] bg-white/10 text-white/65 px-2 py-0.5 rounded-full">{t}</span>
                           ))}
                         </div>
                       </div>
@@ -723,7 +717,7 @@ function PortfolioSection() {
                     </div>
                     <div className="flex-1 h-3 bg-white/10 rounded-sm mx-4" />
                     {link && (
-                      <span className="text-[9px] text-white/30 truncate max-w-[120px]">
+                      <span className="text-[9px] text-white/45 truncate max-w-[120px]">
                         {link.replace("https://", "")}
                       </span>
                     )}
@@ -734,7 +728,7 @@ function PortfolioSection() {
                     whileHover={{ opacity: 1, x: 0 }}
                     className="absolute top-3 right-4"
                   >
-                    <ChevronRight className="w-5 h-5 text-white/60" />
+                    <ChevronRight className="w-5 h-5 text-white/75" />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
@@ -743,10 +737,10 @@ function PortfolioSection() {
                 <div className="p-6">
                   <p className="text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-1.5">{type}</p>
                   <h3 className="text-white font-bold text-lg mb-2 group-hover:text-cyan-400 transition-colors duration-300">{title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed mb-4">{desc}</p>
+                  <p className="text-white/75 text-sm leading-relaxed mb-4">{desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {tags.map(t => (
-                      <span key={t} className="text-xs border border-white/10 text-white/50 px-3 py-1 rounded-full group-hover:border-cyan-400/20 group-hover:text-white/70 transition-all duration-300">
+                      <span key={t} className="text-xs border border-white/[0.15] text-white/65 px-3 py-1 rounded-full group-hover:border-cyan-400/20 group-hover:text-white/70 transition-all duration-300">
                         {t}
                       </span>
                     ))}
@@ -754,7 +748,7 @@ function PortfolioSection() {
                   {testimonial && (
                     <div className="mt-4 pt-4 border-t border-white/5">
                       <p className="text-white/70 text-sm italic">&ldquo;{testimonial.quote}&rdquo;</p>
-                      <p className="text-white/40 text-xs mt-1">- {testimonial.name}</p>
+                      <p className="text-white/55 text-xs mt-1">- {testimonial.name}</p>
                     </div>
                   )}
                 </div>
@@ -778,7 +772,7 @@ const trustStats = [
 
 function AboutSection() {
   return (
-    <section id="o-nama" className="py-28 bg-[#050505] relative overflow-hidden">
+    <section id="o-nama" className="py-28 bg-[#0c0d12] relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
@@ -811,8 +805,7 @@ function AboutSection() {
                 <motion.div
                   whileHover={{ scale: 1.06, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="p-7 rounded-2xl bg-black border border-white/8 hover:border-cyan-400/25 transition-all text-center group cursor-default animate-glow-pulse"
-                  style={{ animationDelay: `${i * 0.5}s` }}
+                  className="p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.15] hover:border-cyan-400/25 transition-all text-center group cursor-default"
                 >
                   <motion.div
                     whileHover={{ rotate: 360 }}
@@ -821,10 +814,10 @@ function AboutSection() {
                   >
                     <Icon className="w-5 h-5 text-cyan-400" />
                   </motion.div>
-                  <div className="text-3xl font-black text-white mb-1 animate-counter-glow">
+                  <div className="text-3xl font-black text-white mb-1 text-white">
                     <AnimatedCounter value={value} />
                   </div>
-                  <div className="text-white/50 text-sm">{label}</div>
+                  <div className="text-white/65 text-sm">{label}</div>
                 </motion.div>
               </ScaleIn>
             ))}
@@ -859,18 +852,13 @@ function PricingHintSection() {
             Sve što vam treba -<br />
             <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">na jednom mestu</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto">
+          <p className="text-white/75 text-lg max-w-xl mx-auto">
             Jedan projekat. Jedan tim. Jedno rešenje koje pokriva sve od sajta do automatizacije.
           </p>
         </FadeIn>
 
         <ScaleIn>
-          <div className="rounded-2xl bg-white/[0.03] border border-white/10 overflow-hidden hover:border-white/15 transition-all duration-300 relative">
-            {/* Shimmer border effect */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-              <div className="absolute -inset-full bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent animate-shimmer" />
-            </div>
-
+          <div className="rounded-2xl bg-white/[0.07] border border-white/[0.15] overflow-hidden hover:border-white/20 transition-all duration-300">
             <div className="p-8">
               <ul className="space-y-4">
                 {included.map(({ icon: Icon, text }, i) => (
@@ -894,7 +882,7 @@ function PricingHintSection() {
                 ))}
               </ul>
             </div>
-            <div className="border-t border-white/10 p-8 bg-cyan-400/5 text-center">
+            <div className="border-t border-white/[0.15] p-8 bg-cyan-400/5 text-center">
               <p className="text-white/70 text-base mb-2">
                 Cena zavisi od vaših specifičnih potreba i veličine biznisa.
               </p>
@@ -937,10 +925,10 @@ function ContactSection() {
     setSent(true)
   }
 
-  const inputCls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/25 focus:outline-none focus:border-cyan-400/50 focus:bg-white/8 focus:shadow-lg focus:shadow-cyan-400/5 transition-all duration-300 text-sm"
+  const inputCls = "w-full bg-white/5 border border-white/[0.15] rounded-xl px-4 py-3.5 text-white placeholder-white/25 focus:outline-none focus:border-cyan-400/50 focus:bg-white/8 focus:shadow-lg focus:shadow-cyan-400/5 transition-all duration-300 text-sm"
 
   return (
-    <section id="kontakt" className="py-28 bg-[#050505] relative overflow-hidden">
+    <section id="kontakt" className="py-28 bg-[#0c0d12] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -951,7 +939,7 @@ function ContactSection() {
             Spremni da prestanete<br />
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">da gubite klijente?</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/75 text-lg max-w-2xl mx-auto">
             Zakažite besplatan razgovor i saznajte kako sistem za zakazivanje može da promeni vaš biznis.
             Bez obaveza, bez tehničkog žargona.
           </p>
@@ -963,7 +951,7 @@ function ContactSection() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-white font-bold text-xl mb-2">Direktan kontakt</h3>
-                <p className="text-white/55 text-sm leading-relaxed">
+                <p className="text-white/70 text-sm leading-relaxed">
                   Preferujete da popunite formu? Odgovaramo u roku od 24 sata. Ili nas
                   kontaktirajte direktno:
                 </p>
@@ -990,7 +978,7 @@ function ContactSection() {
                     <Icon className="w-5 h-5 text-cyan-400" />
                   </motion.div>
                   <div>
-                    <p className="text-white/40 text-xs uppercase tracking-wider mb-0.5">{label}</p>
+                    <p className="text-white/55 text-xs uppercase tracking-wider mb-0.5">{label}</p>
                     <p className="text-white font-medium">{value}</p>
                   </div>
                 </motion.div>
@@ -1011,7 +999,7 @@ function ContactSection() {
                     transition={{ delay: 0.2 + i * 0.1, duration: 0.4, ease: "backOut" }}
                     whileHover={{ scale: 1.15, y: -3 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-cyan-400/30 transition-all cursor-pointer text-white/60 hover:text-cyan-400"
+                    className="w-10 h-10 rounded-full bg-white/5 border border-white/[0.15] flex items-center justify-center hover:bg-white/10 hover:border-cyan-400/30 transition-all cursor-pointer text-white/75 hover:text-cyan-400"
                   >
                     <Icon />
                   </motion.button>
@@ -1021,9 +1009,9 @@ function ContactSection() {
               {/* Trust bar */}
               <motion.div
                 whileHover={{ scale: 1.01 }}
-                className="p-5 rounded-2xl bg-black border border-white/8 hover:border-cyan-400/15 transition-all duration-300"
+                className="p-5 rounded-2xl bg-black border border-white/[0.15] hover:border-cyan-400/15 transition-all duration-300"
               >
-                <p className="text-white/50 text-xs uppercase tracking-wider mb-3">Zašto nam veruju</p>
+                <p className="text-white/65 text-xs uppercase tracking-wider mb-3">Zašto nam veruju</p>
                 <div className="space-y-2">
                   {[
                     "Besplatan razgovor, bez obaveza",
@@ -1050,14 +1038,9 @@ function ContactSection() {
 
           {/* Form */}
           <SlideIn direction="right" delay={0.15}>
-            <motion.div
-              whileHover={{ borderColor: "rgba(34,211,238,0.15)" }}
-              className="p-8 rounded-2xl bg-black border border-white/10 transition-all duration-300 relative overflow-hidden"
+            <div
+              className="p-8 rounded-2xl bg-[#0c0d12] border border-white/[0.15] transition-all duration-300"
             >
-              {/* Subtle shimmer */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-2xl">
-                <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/[0.02] to-transparent animate-shimmer" style={{ animationDuration: "4s" }} />
-              </div>
 
               <AnimatePresence mode="wait">
                 {sent ? (
@@ -1077,7 +1060,7 @@ function ContactSection() {
                       <Check className="w-8 h-8 text-cyan-400" />
                     </motion.div>
                     <h3 className="text-white font-bold text-xl mb-2">Poruka primljena!</h3>
-                    <p className="text-white/60 text-sm">Javimo se u roku od 24 sata.</p>
+                    <p className="text-white/75 text-sm">Javimo se u roku od 24 sata.</p>
                   </motion.div>
                 ) : (
                   <motion.form
@@ -1096,7 +1079,7 @@ function ContactSection() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.08, duration: 0.5 }}
                       >
-                        <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">{label}</label>
+                        <label className="block text-white/65 text-xs uppercase tracking-wider mb-2">{label}</label>
                         <input type={type} required placeholder={placeholder}
                           value={form[field]} onChange={e => setForm({...form, [field]: e.target.value})}
                           className={inputCls} />
@@ -1109,7 +1092,7 @@ function ContactSection() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.16, duration: 0.5 }}
                     >
-                      <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Vrsta biznisa *</label>
+                      <label className="block text-white/65 text-xs uppercase tracking-wider mb-2">Vrsta biznisa *</label>
                       <select required value={form.biz} onChange={e => setForm({...form, biz: e.target.value})}
                         className={`${inputCls} appearance-none`}>
                         <option value="" className="bg-black">Izaberi vrstu biznisa...</option>
@@ -1123,7 +1106,7 @@ function ContactSection() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.24, duration: 0.5 }}
                     >
-                      <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Poruka (opciono)</label>
+                      <label className="block text-white/65 text-xs uppercase tracking-wider mb-2">Poruka (opciono)</label>
                       <textarea placeholder="Opišite vaš biznis i šta vam je potrebno..."
                         rows={4} value={form.msg} onChange={e => setForm({...form, msg: e.target.value})}
                         className={`${inputCls} resize-none`} />
@@ -1149,13 +1132,13 @@ function ContactSection() {
                       </MagneticWrap>
                     </motion.div>
 
-                    <p className="text-white/30 text-xs text-center">
+                    <p className="text-white/45 text-xs text-center">
                       Vasi podaci su bezbedni. Bez spam poruka.
                     </p>
                   </motion.form>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </div>
           </SlideIn>
         </div>
       </div>
@@ -1176,7 +1159,7 @@ function Footer() {
   ]
 
   return (
-    <footer className="bg-black border-t border-white/10 py-14 relative overflow-hidden">
+    <footer className="bg-black border-t border-white/[0.15] py-14 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -1190,7 +1173,7 @@ function Footer() {
             >
               &lt;flux<span className="text-cyan-400">el.rs/&gt;</span>
             </motion.a>
-            <p className="text-white/45 text-sm leading-relaxed mt-3 max-w-xs">
+            <p className="text-white/60 text-sm leading-relaxed mt-3 max-w-xs">
               Specijalizovani sistemi za online zakazivanje i automatizaciju za mali servisni biznis u Srbiji.
             </p>
             <div className="flex gap-3 mt-5">
@@ -1204,7 +1187,7 @@ function Footer() {
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-cyan-400/30 hover:text-cyan-400 transition-all text-white/50 cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/[0.15] flex items-center justify-center hover:border-cyan-400/30 hover:text-cyan-400 transition-all text-white/65 cursor-pointer"
                 >
                   <Icon className="w-3 h-3" />
                 </motion.button>
@@ -1224,7 +1207,7 @@ function Footer() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05, duration: 0.4 }}
                 >
-                  <a href={l.href} className="text-white/45 text-sm hover:text-cyan-400 hover:pl-1 transition-all duration-300">{l.label}</a>
+                  <a href={l.href} className="text-white/60 text-sm hover:text-cyan-400 hover:pl-1 transition-all duration-300">{l.label}</a>
                 </motion.li>
               ))}
             </ul>
@@ -1233,7 +1216,7 @@ function Footer() {
           {/* Contact */}
           <FadeIn delay={0.2}>
             <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kontakt</h4>
-            <ul className="space-y-2.5 text-white/45 text-sm">
+            <ul className="space-y-2.5 text-white/60 text-sm">
               <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-cyan-400" />+381 61 16 05 707</li>
               <li className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-cyan-400" />fluxel@outlook.com</li>
               <li className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-cyan-400" />Novi Sad, Srbija</li>
@@ -1253,10 +1236,10 @@ function Footer() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="border-t border-white/8 origin-left"
+          className="border-t border-white/[0.15] origin-left"
         />
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-sm">&copy; 2026 Fluxel. Sva prava zadržana.</p>
+          <p className="text-white/45 text-sm">&copy; 2026 Fluxel. Sva prava zadržana.</p>
           <p className="text-white/20 text-xs">Dizajn i razvoj - Fluxel tim, Novi Sad</p>
         </div>
       </div>

@@ -12,7 +12,16 @@
       "Bash(python3:*)",
       "Bash(py:*)",
       "Bash(node -e \"const l = require\\(''lucide-react''\\); const needed = [''PhoneOff'',''MessageSquareX'',''CalendarX'',''Monitor'',''Clock'',''Calendar'',''Bell'',''Zap'',''Check'',''Mail'',''MapPin'',''Shield'',''Users'',''TrendingUp'',''Code2'',''Smartphone'',''Globe'',''RefreshCw'',''Award'',''Menu'',''Quote'',''Layout'',''ChevronRight'',''Headphones'',''BarChart2'']; needed.forEach\\(n => console.log\\(n, n in l ? ''✓'' : ''✗''\\)\\)\")",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Skill(update-config)",
+      "mcp__playwright__playwright_open",
+      "mcp__playwright__playwright_screenshot",
+      "Bash(mkdir -p screenshots)",
+      "Bash(npx playwright:*)",
+      "Bash(node -e \":*)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
 }
