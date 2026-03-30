@@ -294,15 +294,7 @@ export default function EtherealBeamsHero() {
             {/* Left: text */}
             <div className="flex-1 text-center lg:text-left">
               {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 border border-cyan-400/30 px-4 py-2 text-sm text-cyan-400 mb-8"
-              >
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                Specijalizovani za male servisne biznise u Srbiji
-              </motion.div>
+              
 
               {/* Headline - staggered word reveal */}
               <motion.h1

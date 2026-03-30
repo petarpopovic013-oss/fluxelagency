@@ -767,7 +767,7 @@ const trustStats = [
   { icon: Award, value: "12+", label: "Završenih projekata" },
   { icon: Users, value: "10+", label: "Zadovoljnih klijenata" },
   { icon: Headphones, value: "7 dana", label: "Podrška u nedelji" },
-  { icon: Shield, value: "Uključeno", label: "Mesečno održavanje" },
+  { icon: Shield, value: "Uključeno", label: "Održavanje 1. mesec" },
 ]
 
 function AboutSection() {
@@ -835,7 +835,7 @@ const included = [
   { icon: Calendar, text: "Sistem za online zakazivanje" },
   { icon: Bell, text: "Automatska SMS/email podsećanja za klijente" },
   { icon: Globe, text: "Osnovna SEO optimizacija (Google vidljivost)" },
-  { icon: RefreshCw, text: "Mesečno održavanje i ažuriranja" },
+  { icon: RefreshCw, text: "Mesečno održavanje i ažuriranja (1. mesec)" },
   { icon: Headphones, text: "Obuka za korišćenje sistema" },
   { icon: Star, text: "Podrška 7 dana u nedelji" },
 ]
