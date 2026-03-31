@@ -164,17 +164,17 @@ function PhoneMockup() {
       initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: -10 }}
       animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }}
       transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative flex items-center justify-center shrink-0 mt-10 lg:mt-0"
+      className="relative mt-8 flex w-full max-w-[21rem] items-center justify-center self-stretch px-2 sm:mt-10 sm:max-w-sm lg:mt-0 lg:px-0"
     >
       {/* Glow rings */}
-      <div className="absolute w-72 h-72 bg-cyan-400/15 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute w-56 h-56 bg-cyan-400/10 rounded-full blur-2xl animate-[pulse_3s_ease-in-out_infinite_0.5s]" />
+      <div className="absolute h-56 w-56 rounded-full bg-cyan-400/15 blur-3xl animate-pulse sm:h-72 sm:w-72" />
+      <div className="absolute h-44 w-44 rounded-full bg-cyan-400/10 blur-2xl animate-[pulse_3s_ease-in-out_infinite_0.5s] sm:h-56 sm:w-56" />
 
       {/* Phone frame with float animation */}
       <motion.div
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-[220px] h-[440px] sm:w-[260px] sm:h-[520px] bg-[#0d0d0d] rounded-[38px] border border-white/15 shadow-2xl shadow-cyan-400/10 overflow-hidden"
+        className="relative aspect-[1/2] w-[min(72vw,16rem)] overflow-hidden rounded-[2rem] border border-white/15 bg-[#0d0d0d] shadow-2xl shadow-cyan-400/10 sm:w-[260px] sm:rounded-[38px]"
       >
         {/* Notch */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#0d0d0d] rounded-b-2xl z-10 flex items-center justify-center">
@@ -252,7 +252,7 @@ function PhoneMockup() {
         initial={{ opacity: 0, x: 40, scale: 0.8 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-8 -right-2 sm:top-12 sm:-right-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-3 py-2 shadow-xl"
+        className="absolute right-0 top-10 max-w-[9.5rem] rounded-2xl border border-white/20 bg-white/10 px-2.5 py-2 shadow-xl backdrop-blur-xl sm:-right-4 sm:top-12 sm:max-w-none sm:px-3"
       >
         <p className="text-white/50 text-[8px]">Nova rezervacija</p>
         <p className="text-white font-semibold text-[10px]">Marija M. &middot; 10:30</p>
@@ -264,7 +264,7 @@ function PhoneMockup() {
         initial={{ opacity: 0, x: -40, scale: 0.8 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-16 -left-4 sm:bottom-20 sm:-left-8 bg-emerald-500/15 backdrop-blur-xl border border-emerald-500/25 rounded-2xl px-3 py-2 shadow-xl"
+        className="absolute bottom-14 left-0 rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl sm:-left-8 sm:bottom-20 sm:px-3"
       >
         <p className="text-emerald-400 text-[8px] font-semibold">+23% vise termina</p>
         <p className="text-white/50 text-[8px]">ovog meseca</p>
@@ -277,7 +277,7 @@ function PhoneMockup() {
 
 export default function EtherealBeamsHero() {
   return (
-    <section id="hero" className="relative min-h-screen w-full overflow-hidden bg-black">
+    <section id="hero" className="relative min-h-[100svh] w-full overflow-hidden bg-black">
       {/* Background beams */}
       <div className="absolute inset-0 z-0">
         <Beams beamWidth={2.5} beamHeight={18} beamNumber={15} lightColor="#ffffff" speed={2.5} noiseIntensity={2} scale={0.15} rotation={43} />
@@ -287,29 +287,18 @@ export default function EtherealBeamsHero() {
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent z-0" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center pt-20 pb-10">
-        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
+      <div className="relative z-10 flex min-h-[100svh] items-center pt-24 pb-14 sm:pb-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-20">
 
             {/* Left: text */}
             <div className="flex-1 text-center lg:text-left">
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 border border-cyan-400/30 px-4 py-2 text-sm text-cyan-400 mb-8"
-              >
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                Specijalizovani za male servisne biznise u Srbiji
-              </motion.div>
-
               {/* Headline - staggered word reveal */}
               <motion.h1
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6"
+                className="mb-5 text-[clamp(2.5rem,10vw,5.5rem)] font-black leading-[1.02] tracking-tight text-white sm:mb-6"
               >
                 Koliko klijenata ste<br />
                 izgubili danas jer{" "}
@@ -328,7 +317,7 @@ export default function EtherealBeamsHero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="text-lg sm:text-xl text-white/70 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
+                className="mx-auto mb-8 max-w-xl text-base leading-7 text-white/70 sm:mb-10 sm:text-lg sm:leading-8 lg:mx-0 lg:text-xl"
               >
                 Pravimo sistem za online zakazivanje i profesionalni web sajt koji radi za vas
                 <strong className="text-white"> 24/7</strong> - čak i dok spavate.
@@ -339,11 +328,11 @@ export default function EtherealBeamsHero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8"
+                className="mb-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 lg:justify-start"
               >
                 <a
                   href="#kontakt"
-                  className="group relative inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-cyan-400/25 hover:shadow-cyan-400/40 hover:scale-105"
+                  className="group relative inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black shadow-lg shadow-cyan-400/25 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-cyan-400/40 sm:min-h-14 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
                 >
                   <span className="absolute inset-0 rounded-full bg-cyan-400/30 blur-xl group-hover:blur-2xl transition-all duration-300 -z-10" />
                   Zakažite besplatan razgovor
@@ -351,7 +340,7 @@ export default function EtherealBeamsHero() {
                 </a>
                 <a
                   href="#resenje"
-                  className="inline-flex items-center gap-2 border border-white/20 text-white/80 hover:text-white hover:border-white/40 font-medium text-base px-6 py-4 rounded-full transition-all duration-300 backdrop-blur-sm hover:bg-white/5"
+                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-base font-medium text-white/80 transition-all duration-300 backdrop-blur-sm hover:border-white/40 hover:bg-white/5 hover:text-white sm:min-h-14 sm:w-auto sm:py-4"
                 >
                   Pogledaj kako funkcioniše
                 </a>
@@ -362,9 +351,9 @@ export default function EtherealBeamsHero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="flex flex-col sm:flex-row items-center lg:items-start gap-4 text-sm text-white/50"
+                className="flex flex-col items-center gap-3 text-sm text-white/50 sm:flex-row sm:gap-4 lg:items-start"
               >
-                <div className="flex items-center gap-1.5">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 lg:justify-start">
                   {[...Array(5)].map((_,i)=>(
                     <motion.span
                       key={i}
@@ -376,7 +365,7 @@ export default function EtherealBeamsHero() {
                       ★
                     </motion.span>
                   ))}
-                  <span className="ml-1 text-white/70 font-medium">10+ zadovoljnih klijenata</span>
+                  <span className="ml-1 text-center font-medium text-white/70">10+ zadovoljnih klijenata</span>
                 </div>
                 <span className="hidden sm:block text-white/20">&middot;</span>
                 <span>Dostupni 7 dana u nedelji</span>

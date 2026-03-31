@@ -1,8 +1,9 @@
 "use client"
 
 import dynamic from "next/dynamic"
+import Image from "next/image"
 import { useState, useEffect, useRef, type FormEvent } from "react"
-import { motion, useInView, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion"
+import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import {
   PhoneOff, MessageSquareX, CalendarX, Globe, Clock,
   Calendar, Bell, Zap, RefreshCw, Layout,
@@ -175,6 +176,23 @@ function Navbar() {
     return () => window.removeEventListener("scroll", fn)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [open])
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)")
+    const syncMenu = (event: MediaQueryList | MediaQueryListEvent) => {
+      if (event.matches) setOpen(false)
+    }
+    syncMenu(media)
+    media.addEventListener("change", syncMenu)
+    return () => media.removeEventListener("change", syncMenu)
+  }, [])
+
   const links = [
     { label: "Problem", href: "#problem" },
     { label: "Resenje", href: "#resenje" },
@@ -193,20 +211,20 @@ function Navbar() {
         scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/[0.15] shadow-lg shadow-black/20" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-18 items-center justify-between sm:h-20">
           {/* Logo */}
           <motion.a
             href="#hero"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="text-xl font-black text-white tracking-tight"
+            className="text-lg font-black tracking-tight text-white sm:text-xl"
           >
             &lt;flux<span className="text-cyan-400">el.rs/&gt;</span>
           </motion.a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/[0.15] px-2 py-1">
+          <nav className="hidden items-center gap-1 rounded-full border border-white/[0.15] bg-white/5 px-2 py-1 backdrop-blur-xl md:flex">
             {links.map((l, i) => (
               <motion.a
                 key={l.href}
@@ -215,7 +233,7 @@ function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-                className="px-4 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white transition-colors"
+                className="rounded-full px-4 py-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
               >
                 {l.label}
               </motion.a>
@@ -228,7 +246,7 @@ function Navbar() {
               href="#kontakt"
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(34,211,238,0.3)" }}
               whileTap={{ scale: 0.95 }}
-              className="hidden md:inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-sm px-5 py-2.5 rounded-full transition-colors"
+              className="hidden min-h-11 items-center gap-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-bold text-black transition-colors hover:bg-cyan-300 md:inline-flex"
             >
               Besplatan razgovor
               <ArrowRight className="w-4 h-4" />
@@ -237,7 +255,7 @@ function Navbar() {
 
           {/* Mobile toggle */}
           <button onClick={() => setOpen(o => !o)} aria-label="Menu"
-            className="md:hidden w-10 h-10 flex items-center justify-center text-white/70 hover:text-white">
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:text-white md:hidden">
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -251,31 +269,33 @@ function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/[0.15] px-6 py-4 space-y-1 overflow-hidden"
+            className="md:hidden overflow-hidden border-t border-white/[0.15] bg-black/95 px-4 py-4 backdrop-blur-xl sm:px-6"
           >
-            {links.map((l, i) => (
+            <div className="space-y-2 rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-2">
+              {links.map((l, i) => (
+                <motion.a
+                  key={l.href}
+                  href={l.href}
+                  onClick={close}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="block rounded-2xl px-4 py-3.5 text-base font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
+                >
+                  {l.label}
+                </motion.a>
+              ))}
               <motion.a
-                key={l.href}
-                href={l.href}
+                href="#kontakt"
                 onClick={close}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className="block px-4 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-5 py-3.5 text-base font-bold text-black transition-all"
               >
-                {l.label}
+                Besplatan razgovor <ArrowRight className="w-4 h-4" />
               </motion.a>
-            ))}
-            <motion.a
-              href="#kontakt"
-              onClick={close}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="mt-3 flex items-center justify-center gap-2 bg-cyan-400 text-black font-bold text-sm px-5 py-3 rounded-full w-full transition-all"
-            >
-              Besplatan razgovor <ArrowRight className="w-4 h-4" />
-            </motion.a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -299,6 +319,12 @@ function SectionLabel({ children }: { children: string }) {
     </motion.div>
   )
 }
+
+const sectionShell = "relative overflow-hidden py-20 sm:py-24 lg:py-28"
+const containerShell = "relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
+const sectionIntro = "mb-12 text-center sm:mb-16"
+const sectionTitle = "mb-4 text-[clamp(2rem,8vw,3.25rem)] font-black leading-[1.05] tracking-tight text-white sm:mb-5"
+const sectionBody = "mx-auto max-w-2xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8"
 
 // ─── 1. Pain section ──────────────────────────────────────────────────────────
 
@@ -332,29 +358,29 @@ const pains = [
 
 function PainSection() {
   return (
-    <section id="problem" className="py-28 bg-[#0c0d12] relative overflow-hidden">
+    <section id="problem" className={`${sectionShell} bg-[#0c0d12]`}>
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        <FadeIn className="text-center mb-16">
+      <div className={containerShell}>
+        <FadeIn className={sectionIntro}>
           <SectionLabel>Prepoznajete li ovo?</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
+          <h2 className={sectionTitle}>
             Svaki dan bez sistema za zakazivanje<br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-red-400 to-rose-500 bg-clip-text text-transparent"> košta vas novac</span>
           </h2>
-          <p className="text-white/75 text-lg max-w-2xl mx-auto">
+          <p className={sectionBody}>
             Razgovarali smo sa desetinama vlasnika malih biznisa u Srbiji. Evo šta čujemo iznova i iznova.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
           {pains.map(({ icon: Icon, title, body }, i) => (
             <ScaleIn key={title} delay={i * 0.08}>
               <motion.div
                 whileHover={{ scale: 1.03, y: -5, borderColor: "rgba(239,68,68,0.3)" }}
                 transition={{ duration: 0.3 }}
-                className="h-full p-6 rounded-2xl bg-white/[0.07] border border-white/[0.15] transition-all duration-300 group cursor-default"
+                className="group flex h-full flex-col rounded-2xl border border-white/[0.15] bg-white/[0.07] p-5 transition-all duration-300 cursor-default sm:p-6"
               >
                 <motion.div
                   whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
@@ -363,8 +389,8 @@ function PainSection() {
                 >
                   <Icon className="w-5 h-5 text-red-400" />
                 </motion.div>
-                <h3 className="text-white font-bold text-base mb-2 leading-snug">{title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{body}</p>
+                <h3 className="mb-2 text-base font-bold leading-snug text-white sm:text-lg">{title}</h3>
+                <p className="text-sm leading-6 text-white/70 sm:text-[15px]">{body}</p>
               </motion.div>
             </ScaleIn>
           ))}
@@ -373,12 +399,12 @@ function PainSection() {
           <ScaleIn delay={pains.length * 0.08} className="md:col-span-2 lg:col-span-1">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="h-full p-6 rounded-2xl bg-cyan-400/5 border border-cyan-400/20 flex flex-col justify-center relative overflow-hidden"
+              className="relative flex h-full flex-col justify-center overflow-hidden rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5 sm:p-6"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
               <Quote className="w-8 h-8 text-cyan-400/40 mb-3" />
-              <p className="text-white/80 text-base italic leading-relaxed">
-                "Znamo ovo jer smo to čuli od desetina vlasnika biznisa. Nije problem u vama - problem je što niste imali pravi alat."
+              <p className="text-base italic leading-7 text-white/80 sm:text-[17px]">
+                &ldquo;Znamo ovo jer smo to čuli od desetina vlasnika biznisa. Nije problem u vama - problem je što niste imali pravi alat.&rdquo;
               </p>
               <p className="text-cyan-400 text-sm font-semibold mt-4">&mdash; Fluxel</p>
             </motion.div>
@@ -443,31 +469,31 @@ const colorMap: Record<string, { icon: string; glow: string }> = {
 
 function SolutionSection() {
   return (
-    <section id="resenje" className="py-28 bg-black relative overflow-hidden">
+    <section id="resenje" className={`${sectionShell} bg-black`}>
       {/* Ambient glow */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        <FadeIn className="text-center mb-16">
+      <div className={containerShell}>
+        <FadeIn className={sectionIntro}>
           <SectionLabel>Rešenje</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
+          <h2 className={sectionTitle}>
             Sistem koji radi umesto vas -<br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent"> čak i kad spavate</span>
           </h2>
-          <p className="text-white/75 text-lg max-w-2xl mx-auto">
+          <p className={sectionBody}>
             Ovo nije lista usluga. Ovo je jedan integrisani sistem koji rešava svaki problem koji smo
             gore naveli - odjednom.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:gap-5 md:mb-10 md:grid-cols-2 md:gap-6">
           {systemParts.map(({ icon: Icon, title, color, bullets }, i) => (
             <FadeIn key={title} delay={i * 0.1}>
               <motion.div
                 whileHover={{ scale: 1.02, y: -4 }}
                 transition={{ duration: 0.3 }}
-                className={`h-full p-7 rounded-2xl bg-white/[0.07] border border-white/[0.15] hover:border-white/15 transition-all duration-300 group cursor-default ${colorMap[color].glow} hover:shadow-lg`}
+                className={`group h-full rounded-2xl border border-white/[0.15] bg-white/[0.07] p-5 transition-all duration-300 cursor-default hover:border-white/15 hover:shadow-lg sm:p-6 ${colorMap[color].glow}`}
               >
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: 5 }}
@@ -476,7 +502,7 @@ function SolutionSection() {
                 >
                   <Icon className="w-6 h-6" />
                 </motion.div>
-                <h3 className="text-white font-bold text-xl mb-4">{title}</h3>
+                <h3 className="mb-3 text-lg font-bold text-white sm:mb-4 sm:text-xl">{title}</h3>
                 <ul className="space-y-2.5">
                   {bullets.map((b, j) => (
                     <motion.li
@@ -488,7 +514,7 @@ function SolutionSection() {
                       className="flex items-start gap-2.5"
                     >
                       <Check className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-                      <span className="text-white/65 text-sm leading-relaxed">{b}</span>
+                      <span className="text-sm leading-6 text-white/65 sm:text-[15px]">{b}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -498,8 +524,8 @@ function SolutionSection() {
         </div>
 
         <FadeIn>
-          <div className="text-center p-6 rounded-2xl bg-cyan-400/[0.08] border border-cyan-400/25">
-            <p className="text-white text-lg font-medium">
+          <div className="rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.08] p-5 text-center sm:p-6">
+            <p className="text-base font-medium leading-7 text-white sm:text-lg">
               Sve ovo funkcionise kao <span className="text-cyan-400 font-bold">jedan sistem</span> -
               bez da vi morate da brinete o tehnologiji.
             </p>
@@ -535,19 +561,19 @@ const steps = [
 
 function HowItWorksSection() {
   return (
-    <section id="proces" className="py-28 bg-[#0c0d12] relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <FadeIn className="text-center mb-16">
+    <section id="proces" className={`${sectionShell} bg-[#0c0d12]`}>
+      <div className={containerShell}>
+        <FadeIn className={sectionIntro}>
           <SectionLabel>Kako do vašeg sistema</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
+          <h2 className={sectionTitle}>
             Samo <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">3 koraka</span> do sistema koji<br className="hidden sm:block" /> radi za vas
           </h2>
-          <p className="text-white/75 text-lg max-w-xl mx-auto">
+          <p className="mx-auto max-w-xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
             Nema komplikacija. Nema tehničkih znanja koja su vam potrebna. Samo razgovor, izrada i rezultati.
           </p>
         </FadeIn>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="relative grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:gap-8">
           {/* Connecting line (desktop) - animated */}
           <motion.div
             initial={{ scaleX: 0 }}
@@ -562,16 +588,16 @@ function HowItWorksSection() {
               <motion.div
                 whileHover={{ scale: 1.04, y: -8 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative z-10 flex flex-col items-center text-center p-8 rounded-2xl bg-black border border-white/[0.15] hover:border-cyan-400/30 transition-all duration-300 group"
+                className="group relative z-10 flex flex-col items-center rounded-2xl border border-white/[0.15] bg-black p-6 text-center transition-all duration-300 hover:border-cyan-400/30 sm:p-8"
               >
                 {/* Step number + icon */}
                 <div className="relative mb-6">
                   <motion.div
                     whileHover={{ rotate: [0, -5, 5, 0] }}
                     transition={{ duration: 0.6 }}
-                    className="w-24 h-24 rounded-2xl bg-cyan-400/10 border border-cyan-400/25 flex items-center justify-center group-hover:bg-cyan-400/15 group-hover:shadow-lg group-hover:shadow-cyan-400/15 transition-all duration-300"
+                    className="flex h-20 w-20 items-center justify-center rounded-2xl border border-cyan-400/25 bg-cyan-400/10 transition-all duration-300 group-hover:bg-cyan-400/15 group-hover:shadow-lg group-hover:shadow-cyan-400/15 sm:h-24 sm:w-24"
                   >
-                    <Icon className="w-10 h-10 text-cyan-400" />
+                    <Icon className="h-8 w-8 text-cyan-400 sm:h-10 sm:w-10" />
                   </motion.div>
                   <motion.div
                     initial={{ scale: 0 }}
@@ -583,20 +609,20 @@ function HowItWorksSection() {
                     <span className="text-black font-black text-xs">{i + 1}</span>
                   </motion.div>
                 </div>
-                <h3 className="text-white font-bold text-xl mb-3">{title}</h3>
-                <p className="text-white/75 text-sm leading-relaxed">{body}</p>
+                <h3 className="mb-3 text-lg font-bold text-white sm:text-xl">{title}</h3>
+                <p className="text-sm leading-6 text-white/75 sm:text-[15px]">{body}</p>
               </motion.div>
             </ScaleIn>
           ))}
         </div>
 
-        <FadeIn className="mt-14 text-center">
+        <FadeIn className="mt-10 text-center sm:mt-14">
           <MagneticWrap className="inline-block">
             <motion.a
               href="#kontakt"
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.3)" }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-black font-bold px-8 py-4 rounded-full transition-colors text-base relative"
+              className="relative inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
             >
               <span className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl -z-10" />
               Pokrenite vas sistem danas
@@ -632,7 +658,7 @@ const projects: Project[] = [
     gradient: "from-rose-900/60 to-pink-900/40",
     letter: "RS",
     testimonial: null,
-    image: "rsbarbershop.png",
+    image: "/rsbarbershop.png",
     link: "https://rs-barbershop.com"
   },
   {
@@ -643,7 +669,7 @@ const projects: Project[] = [
     gradient: "from-violet-900/60 to-indigo-900/40",
     letter: "M",
     testimonial: null,
-    image: "jelenapsihoteraija.png",
+    image: "/jelenapsihoteraija.png",
     link: "https://jelenapsihoterapija.vercel.app"
   },
   {
@@ -661,21 +687,21 @@ const projects: Project[] = [
 
 function PortfolioSection() {
   return (
-    <section id="radovi" className="py-28 bg-black relative overflow-hidden">
+    <section id="radovi" className={`${sectionShell} bg-black`}>
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-violet-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        <FadeIn className="text-center mb-16">
+      <div className={containerShell}>
+        <FadeIn className={sectionIntro}>
           <SectionLabel>Naši radovi</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
+          <h2 className={sectionTitle}>
             Sistemi koje smo <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">već napravili</span>
           </h2>
-          <p className="text-white/75 text-lg max-w-2xl mx-auto">
+          <p className={sectionBody}>
             Svaki projekat je bio konkretan problem. Svako rešenje je donelo merljive rezultate.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-6">
           {projects.map(({ type, title, desc, tags, gradient, letter, image, link, testimonial }, i) => (
             <FadeIn key={title} delay={i * 0.1}>
               <motion.a
@@ -684,12 +710,12 @@ function PortfolioSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="block group rounded-2xl overflow-hidden bg-white/[0.07] border border-white/[0.15] hover:border-white/20 transition-all duration-300 cursor-pointer"
+                className="group block overflow-hidden rounded-2xl border border-white/[0.15] bg-white/[0.07] transition-all duration-300 cursor-pointer hover:border-white/20"
               >
                 {/* Mockup area */}
-                <div className={`h-48 bg-gradient-to-br ${gradient} relative overflow-hidden`}>
+                <div className={`relative h-44 overflow-hidden bg-gradient-to-br sm:h-48 ${gradient}`}>
                   {image ? (
-                    <img
+                    <Image
                       src={image}
                       alt={`Screenshot projekta ${title}`}
                       width={600}
@@ -701,7 +727,7 @@ function PortfolioSection() {
                     <div className="absolute inset-0 flex items-center justify-center pt-8">
                       <div className="text-center">
                         <div className="text-7xl font-black text-white/10 leading-none">{letter}</div>
-                        <div className="mt-2 inline-flex gap-1">
+                        <div className="mt-2 inline-flex max-w-[12rem] flex-wrap justify-center gap-1">
                           {tags.slice(0,2).map(t=>(
                             <span key={t} className="text-[9px] bg-white/10 text-white/65 px-2 py-0.5 rounded-full">{t}</span>
                           ))}
@@ -711,7 +737,7 @@ function PortfolioSection() {
                   )}
 
                   {/* Browser chrome */}
-                  <div className="absolute top-3 left-3 right-3 h-7 bg-black/40 backdrop-blur rounded-lg flex items-center px-3 gap-2">
+                  <div className="absolute left-3 right-3 top-3 flex h-7 items-center gap-2 rounded-lg bg-black/40 px-3 backdrop-blur">
                     <div className="flex gap-1.5">
                       {[...Array(3)].map((_,j)=><div key={j} className="w-2 h-2 rounded-full bg-white/20" />)}
                     </div>
@@ -734,20 +760,20 @@ function PortfolioSection() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-5 sm:p-6">
                   <p className="text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-1.5">{type}</p>
-                  <h3 className="text-white font-bold text-lg mb-2 group-hover:text-cyan-400 transition-colors duration-300">{title}</h3>
-                  <p className="text-white/75 text-sm leading-relaxed mb-4">{desc}</p>
+                  <h3 className="mb-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-cyan-400 sm:text-xl">{title}</h3>
+                  <p className="mb-4 text-sm leading-6 text-white/75 sm:text-[15px]">{desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {tags.map(t => (
-                      <span key={t} className="text-xs border border-white/[0.15] text-white/65 px-3 py-1 rounded-full group-hover:border-cyan-400/20 group-hover:text-white/70 transition-all duration-300">
+                      <span key={t} className="rounded-full border border-white/[0.15] px-3 py-1 text-[11px] text-white/65 transition-all duration-300 group-hover:border-cyan-400/20 group-hover:text-white/70 sm:text-xs">
                         {t}
                       </span>
                     ))}
                   </div>
                   {testimonial && (
                     <div className="mt-4 pt-4 border-t border-white/5">
-                      <p className="text-white/70 text-sm italic">&ldquo;{testimonial.quote}&rdquo;</p>
+                      <p className="text-sm italic leading-6 text-white/70">&ldquo;{testimonial.quote}&rdquo;</p>
                       <p className="text-white/55 text-xs mt-1">- {testimonial.name}</p>
                     </div>
                   )}
@@ -772,17 +798,17 @@ const trustStats = [
 
 function AboutSection() {
   return (
-    <section id="o-nama" className="py-28 bg-[#0c0d12] relative overflow-hidden">
+    <section id="o-nama" className={`${sectionShell} bg-[#0c0d12]`}>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className={containerShell}>
+        <div className="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <SlideIn direction="left">
             <SectionLabel>Zašto Fluxel?</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+            <h2 className="mb-5 text-[clamp(2rem,8vw,3.25rem)] font-black leading-[1.05] tracking-tight text-white sm:mb-6">
               Specijalizovani, ne<br /><span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">generalistički</span>
             </h2>
-            <div className="space-y-4 text-white/65 text-[16px] leading-relaxed">
+            <div className="space-y-4 text-[15px] leading-7 text-white/65 sm:text-base sm:leading-8">
               <p>
                 Mi ne radimo &ldquo;sve&rdquo;. Fokusirani smo isključivo na sisteme za zakazivanje i automatizaciju
                 za servisne biznise - frizere, kozmetičare, terapeute, škole, auto škole, rent-a-car.
@@ -799,13 +825,13 @@ function AboutSection() {
             </div>
           </SlideIn>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 min-[430px]:grid-cols-2">
             {trustStats.map(({ icon: Icon, value, label }, i) => (
               <ScaleIn key={label} delay={i * 0.12}>
                 <motion.div
                   whileHover={{ scale: 1.06, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.15] hover:border-cyan-400/25 transition-all text-center group cursor-default"
+                  className="group rounded-2xl border border-white/[0.15] bg-[#0c0d12] p-6 text-center transition-all cursor-default hover:border-cyan-400/25 sm:p-7"
                 >
                   <motion.div
                     whileHover={{ rotate: 360 }}
@@ -814,10 +840,10 @@ function AboutSection() {
                   >
                     <Icon className="w-5 h-5 text-cyan-400" />
                   </motion.div>
-                  <div className="text-3xl font-black text-white mb-1 text-white">
+                  <div className="mb-1 text-3xl font-black text-white">
                     <AnimatedCounter value={value} />
                   </div>
-                  <div className="text-white/65 text-sm">{label}</div>
+                  <div className="text-sm leading-6 text-white/65">{label}</div>
                 </motion.div>
               </ScaleIn>
             ))}
@@ -842,25 +868,25 @@ const included = [
 
 function PricingHintSection() {
   return (
-    <section id="paketi" className="py-28 bg-black relative overflow-hidden">
+    <section id="paketi" className={`${sectionShell} bg-black`}>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 relative">
-        <FadeIn className="text-center mb-12">
+      <div className="relative mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+        <FadeIn className="mb-10 text-center sm:mb-12">
           <SectionLabel>Šta dobijate?</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
+          <h2 className={sectionTitle}>
             Sve što vam treba -<br />
             <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">na jednom mestu</span>
           </h2>
-          <p className="text-white/75 text-lg max-w-xl mx-auto">
+          <p className="mx-auto max-w-xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
             Jedan projekat. Jedan tim. Jedno rešenje koje pokriva sve od sajta do automatizacije.
           </p>
         </FadeIn>
 
         <ScaleIn>
-          <div className="rounded-2xl bg-white/[0.07] border border-white/[0.15] overflow-hidden hover:border-white/20 transition-all duration-300">
-            <div className="p-8">
-              <ul className="space-y-4">
+          <div className="overflow-hidden rounded-2xl border border-white/[0.15] bg-white/[0.07] transition-all duration-300 hover:border-white/20">
+            <div className="p-5 sm:p-8">
+              <ul className="space-y-3.5 sm:space-y-4">
                 {included.map(({ icon: Icon, text }, i) => (
                   <motion.li
                     key={text}
@@ -868,7 +894,7 @@ function PricingHintSection() {
                     whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center gap-4 group/item"
+                    className="group/item flex items-start gap-3.5 sm:gap-4"
                   >
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: 5 }}
@@ -876,17 +902,17 @@ function PricingHintSection() {
                     >
                       <Icon className="w-4 h-4 text-cyan-400" />
                     </motion.div>
-                    <span className="text-white/80 font-medium group-hover/item:text-white transition-colors duration-300">{text}</span>
-                    <Check className="w-4 h-4 text-cyan-400 ml-auto shrink-0 group-hover/item:scale-125 transition-transform duration-300" />
+                    <span className="text-sm font-medium leading-6 text-white/80 transition-colors duration-300 group-hover/item:text-white sm:text-base">{text}</span>
+                    <Check className="ml-auto mt-1 h-4 w-4 shrink-0 text-cyan-400 transition-transform duration-300 group-hover/item:scale-125" />
                   </motion.li>
                 ))}
               </ul>
             </div>
-            <div className="border-t border-white/[0.15] p-8 bg-cyan-400/5 text-center">
-              <p className="text-white/70 text-base mb-2">
+            <div className="border-t border-white/[0.15] bg-cyan-400/5 p-5 text-center sm:p-8">
+              <p className="mb-2 text-sm leading-6 text-white/70 sm:text-base">
                 Cena zavisi od vaših specifičnih potreba i veličine biznisa.
               </p>
-              <p className="text-white font-semibold text-lg mb-6">
+              <p className="mb-5 text-base font-semibold leading-7 text-white sm:mb-6 sm:text-lg">
                 Javite nam se za <span className="text-cyan-400 font-bold">besplatnu procenu</span> - bez obaveza.
               </p>
               <MagneticWrap className="inline-block">
@@ -894,7 +920,7 @@ function PricingHintSection() {
                   href="#kontakt"
                   whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.3)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-black font-bold px-8 py-4 rounded-full transition-colors text-base"
+                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
                 >
                   Tražim procenu &rarr;
                 </motion.a>
@@ -925,33 +951,33 @@ function ContactSection() {
     setSent(true)
   }
 
-  const inputCls = "w-full bg-white/5 border border-white/[0.15] rounded-xl px-4 py-3.5 text-white placeholder-white/25 focus:outline-none focus:border-cyan-400/50 focus:bg-white/8 focus:shadow-lg focus:shadow-cyan-400/5 transition-all duration-300 text-sm"
+  const inputCls = "w-full rounded-xl border border-white/[0.15] bg-white/5 px-4 py-3.5 text-base text-white placeholder-white/25 transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/8 focus:shadow-lg focus:shadow-cyan-400/5 focus:outline-none"
 
   return (
-    <section id="kontakt" className="py-28 bg-[#0c0d12] relative overflow-hidden">
+    <section id="kontakt" className={`${sectionShell} bg-[#0c0d12]`}>
       <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        <FadeIn className="text-center mb-16">
+      <div className={containerShell}>
+        <FadeIn className={sectionIntro}>
           <SectionLabel>Kontakt</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5">
+          <h2 className={sectionTitle}>
             Spremni da prestanete<br />
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">da gubite klijente?</span>
           </h2>
-          <p className="text-white/75 text-lg max-w-2xl mx-auto">
+          <p className={sectionBody}>
             Zakažite besplatan razgovor i saznajte kako sistem za zakazivanje može da promeni vaš biznis.
             Bez obaveza, bez tehničkog žargona.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+        <div className="grid grid-cols-1 items-start gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Contact info */}
           <SlideIn direction="left">
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               <div>
                 <h3 className="text-white font-bold text-xl mb-2">Direktan kontakt</h3>
-                <p className="text-white/70 text-sm leading-relaxed">
+                <p className="text-sm leading-6 text-white/70 sm:text-[15px]">
                   Preferujete da popunite formu? Odgovaramo u roku od 24 sata. Ili nas
                   kontaktirajte direktno:
                 </p>
@@ -969,22 +995,22 @@ function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   whileHover={{ x: 5 }}
-                  className="flex gap-4 items-start group cursor-default"
+                  className="group flex items-start gap-3.5 sm:gap-4 cursor-default"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-11 h-11 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-cyan-400/20 group-hover:shadow-lg group-hover:shadow-cyan-400/10 transition-all duration-300"
+                    className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 transition-all duration-300 group-hover:bg-cyan-400/20 group-hover:shadow-lg group-hover:shadow-cyan-400/10"
                   >
                     <Icon className="w-5 h-5 text-cyan-400" />
                   </motion.div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-white/55 text-xs uppercase tracking-wider mb-0.5">{label}</p>
-                    <p className="text-white font-medium">{value}</p>
+                    <p className="break-words text-sm font-medium text-white sm:text-base">{value}</p>
                   </div>
                 </motion.div>
               ))}
 
-              <div className="flex gap-3 pt-2">
+              <div className="flex flex-wrap gap-3 pt-1 sm:pt-2">
                 {([
                   [IconInstagram, "Instagram"],
                   [IconLinkedin, "LinkedIn"],
@@ -999,7 +1025,7 @@ function ContactSection() {
                     transition={{ delay: 0.2 + i * 0.1, duration: 0.4, ease: "backOut" }}
                     whileHover={{ scale: 1.15, y: -3 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/[0.15] flex items-center justify-center hover:bg-white/10 hover:border-cyan-400/30 transition-all cursor-pointer text-white/75 hover:text-cyan-400"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.15] bg-white/5 text-white/75 transition-all cursor-pointer hover:border-cyan-400/30 hover:bg-white/10 hover:text-cyan-400"
                   >
                     <Icon />
                   </motion.button>
@@ -1009,7 +1035,7 @@ function ContactSection() {
               {/* Trust bar */}
               <motion.div
                 whileHover={{ scale: 1.01 }}
-                className="p-5 rounded-2xl bg-black border border-white/[0.15] hover:border-cyan-400/15 transition-all duration-300"
+                className="rounded-2xl border border-white/[0.15] bg-black p-5 transition-all duration-300 hover:border-cyan-400/15"
               >
                 <p className="text-white/65 text-xs uppercase tracking-wider mb-3">Zašto nam veruju</p>
                 <div className="space-y-2">
@@ -1028,7 +1054,7 @@ function ContactSection() {
                       className="flex items-center gap-2.5"
                     >
                       <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                      <span className="text-white/65 text-sm">{t}</span>
+                      <span className="text-sm leading-6 text-white/65">{t}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -1038,9 +1064,7 @@ function ContactSection() {
 
           {/* Form */}
           <SlideIn direction="right" delay={0.15}>
-            <div
-              className="p-8 rounded-2xl bg-[#0c0d12] border border-white/[0.15] transition-all duration-300"
-            >
+            <div className="rounded-2xl border border-white/[0.15] bg-[#0c0d12] p-5 transition-all duration-300 sm:p-8">
 
               <AnimatePresence mode="wait">
                 {sent ? (
@@ -1049,7 +1073,7 @@ function ContactSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, ease: "backOut" }}
-                    className="flex flex-col items-center justify-center py-12 text-center relative"
+                    className="relative flex flex-col items-center justify-center py-10 text-center sm:py-12"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
@@ -1066,7 +1090,7 @@ function ContactSection() {
                   <motion.form
                     key="form"
                     onSubmit={handleSubmit}
-                    className="space-y-4 relative"
+                    className="relative space-y-4"
                   >
                     {[
                       { label: "Ime i prezime *", type: "text", placeholder: "Marko Nikolić", field: "name" as const },
@@ -1079,7 +1103,7 @@ function ContactSection() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.08, duration: 0.5 }}
                       >
-                        <label className="block text-white/65 text-xs uppercase tracking-wider mb-2">{label}</label>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">{label}</label>
                         <input type={type} required placeholder={placeholder}
                           value={form[field]} onChange={e => setForm({...form, [field]: e.target.value})}
                           className={inputCls} />
@@ -1092,7 +1116,7 @@ function ContactSection() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.16, duration: 0.5 }}
                     >
-                      <label className="block text-white/65 text-xs uppercase tracking-wider mb-2">Vrsta biznisa *</label>
+                      <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">Vrsta biznisa *</label>
                       <select required value={form.biz} onChange={e => setForm({...form, biz: e.target.value})}
                         className={`${inputCls} appearance-none`}>
                         <option value="" className="bg-black">Izaberi vrstu biznisa...</option>
@@ -1106,7 +1130,7 @@ function ContactSection() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.24, duration: 0.5 }}
                     >
-                      <label className="block text-white/65 text-xs uppercase tracking-wider mb-2">Poruka (opciono)</label>
+                      <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">Poruka (opciono)</label>
                       <textarea placeholder="Opišite vaš biznis i šta vam je potrebno..."
                         rows={4} value={form.msg} onChange={e => setForm({...form, msg: e.target.value})}
                         className={`${inputCls} resize-none`} />
@@ -1123,7 +1147,7 @@ function ContactSection() {
                           type="submit"
                           whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(34,211,238,0.2)" }}
                           whileTap={{ scale: 0.98 }}
-                          className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-4 rounded-full transition-colors flex items-center justify-center gap-2 text-base mt-2 relative"
+                          className="relative mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 py-4 text-base font-bold text-black transition-colors sm:min-h-14"
                         >
                           <span className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl -z-10" />
                           Zakazite besplatan razgovor
@@ -1162,8 +1186,8 @@ function Footer() {
     <footer className="bg-black border-t border-white/[0.15] py-14 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+      <div className={containerShell}>
+        <div className="mb-10 grid grid-cols-1 gap-8 sm:gap-10 md:mb-12 md:grid-cols-3">
           {/* Brand */}
           <FadeIn>
             <motion.a
@@ -1173,7 +1197,7 @@ function Footer() {
             >
               &lt;flux<span className="text-cyan-400">el.rs/&gt;</span>
             </motion.a>
-            <p className="text-white/60 text-sm leading-relaxed mt-3 max-w-xs">
+            <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
               Specijalizovani sistemi za online zakazivanje i automatizaciju za mali servisni biznis u Srbiji.
             </p>
             <div className="flex gap-3 mt-5">
@@ -1187,9 +1211,9 @@ function Footer() {
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 rounded-full bg-white/5 border border-white/[0.15] flex items-center justify-center hover:border-cyan-400/30 hover:text-cyan-400 transition-all text-white/65 cursor-pointer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.15] bg-white/5 text-white/65 transition-all cursor-pointer hover:border-cyan-400/30 hover:text-cyan-400"
                 >
-                  <Icon className="w-3 h-3" />
+                  <Icon className="h-3.5 w-3.5" />
                 </motion.button>
               ))}
             </div>
@@ -1216,10 +1240,10 @@ function Footer() {
           {/* Contact */}
           <FadeIn delay={0.2}>
             <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kontakt</h4>
-            <ul className="space-y-2.5 text-white/60 text-sm">
-              <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-cyan-400" />+381 61 16 05 707</li>
-              <li className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-cyan-400" />fluxel@outlook.com</li>
-              <li className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-cyan-400" />Novi Sad, Srbija</li>
+            <ul className="space-y-2.5 text-sm text-white/60">
+              <li className="flex items-start gap-2.5"><Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />+381 61 16 05 707</li>
+              <li className="flex items-start gap-2.5 break-all sm:break-normal"><Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />fluxel@outlook.com</li>
+              <li className="flex items-start gap-2.5"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />Novi Sad, Srbija</li>
             </ul>
             <motion.a
               href="#kontakt"
@@ -1238,7 +1262,7 @@ function Footer() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="border-t border-white/[0.15] origin-left"
         />
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-start justify-between gap-3 pt-8 text-left sm:flex-row sm:items-center">
           <p className="text-white/45 text-sm">&copy; 2026 Fluxel. Sva prava zadržana.</p>
           <p className="text-white/20 text-xs">Dizajn i razvoj - Fluxel tim, Novi Sad</p>
         </div>
@@ -1251,7 +1275,7 @@ function Footer() {
 
 export default function Home() {
   return (
-    <main className="bg-black">
+    <main className="overflow-x-clip bg-black">
       <Navbar />
       <EtherealBeamsHero />
       <SectionDivider />
