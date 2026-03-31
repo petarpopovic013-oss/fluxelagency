@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useState, useEffect, useRef, type FormEvent } from "react"
-import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
+import { motion, MotionConfig, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import {
   PhoneOff, MessageSquareX, CalendarX, Globe, Clock,
   Calendar, Bell, Zap, RefreshCw, Layout,
@@ -17,6 +17,8 @@ const EtherealBeamsHero = dynamic(
   () => import("@/components/ui/ethereal-beams-hero"),
   { ssr: false, loading: () => <div className="min-h-screen w-full bg-black" /> }
 )
+
+const naturalEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 // ─── Social icons ─────────────────────────────────────────────────────────────
 
@@ -42,10 +44,10 @@ const IconX = ({ className = "w-4 h-4" }: SI) => (
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-8% 0px -6%" }}
+      transition={{ duration: 0.65, delay, ease: naturalEase }}
       className={className}
     >
       {children}
@@ -56,10 +58,10 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 function SlideIn({ children, delay = 0, className = "", direction = "left" }: { children: React.ReactNode; delay?: number; className?: string; direction?: "left" | "right" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: direction === "left" ? -30 : 30 }}
+      initial={{ opacity: 0, x: direction === "left" ? -20 : 20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-8% 0px -6%" }}
+      transition={{ duration: 0.7, delay, ease: naturalEase }}
       className={className}
     >
       {children}
@@ -70,10 +72,10 @@ function SlideIn({ children, delay = 0, className = "", direction = "left" }: { 
 function ScaleIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.975, y: 10 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-8% 0px -6%" }}
+      transition={{ duration: 0.6, delay, ease: naturalEase }}
       className={className}
     >
       {children}
@@ -157,7 +159,7 @@ function SectionDivider() {
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.4, ease: naturalEase }}
         className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent origin-center"
       />
     </div>
@@ -206,7 +208,7 @@ function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.9, ease: naturalEase }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/[0.15] shadow-lg shadow-black/20" : "bg-transparent"
       }`}
@@ -268,7 +270,7 @@ function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.42, ease: naturalEase }}
             className="md:hidden overflow-hidden border-t border-white/[0.15] bg-black/95 px-4 py-4 backdrop-blur-xl sm:px-6"
           >
             <div className="space-y-2 rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-2">
@@ -279,7 +281,7 @@ function Navbar() {
                   onClick={close}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.06, duration: 0.45, ease: naturalEase }}
                   className="block rounded-2xl px-4 py-3.5 text-base font-medium text-white/70 transition-all hover:bg-white/5 hover:text-white"
                 >
                   {l.label}
@@ -290,7 +292,7 @@ function Navbar() {
                 onClick={close}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.22, duration: 0.45, ease: naturalEase }}
                 className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-5 py-3.5 text-base font-bold text-black transition-all"
               >
                 Besplatan razgovor <ArrowRight className="w-4 h-4" />
@@ -793,7 +795,7 @@ const trustStats = [
   { icon: Award, value: "12+", label: "Završenih projekata" },
   { icon: Users, value: "10+", label: "Zadovoljnih klijenata" },
   { icon: Headphones, value: "7 dana", label: "Podrška u nedelji" },
-  { icon: Shield, value: "Uključeno", label: "Mesečno održavanje" },
+  { icon: Shield, value: "Uključeno", label: "Održavanje 1. mesec" },
 ]
 
 function AboutSection() {
@@ -861,7 +863,7 @@ const included = [
   { icon: Calendar, text: "Sistem za online zakazivanje" },
   { icon: Bell, text: "Automatska SMS/email podsećanja za klijente" },
   { icon: Globe, text: "Osnovna SEO optimizacija (Google vidljivost)" },
-  { icon: RefreshCw, text: "Mesečno održavanje i ažuriranja" },
+  { icon: RefreshCw, text: "Mesečno održavanje i ažuriranja (1. mesec)" },
   { icon: Headphones, text: "Obuka za korišćenje sistema" },
   { icon: Star, text: "Podrška 7 dana u nedelji" },
 ]
@@ -1274,25 +1276,83 @@ function Footer() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let frame = 0
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+
+    const smoothScrollTo = (targetY: number) => {
+      if (reduceMotion.matches) {
+        window.scrollTo(0, targetY)
+        return
+      }
+
+      cancelAnimationFrame(frame)
+      const startY = window.scrollY
+      const distance = targetY - startY
+      const duration = Math.min(1200, Math.max(520, Math.abs(distance) * 0.55))
+      const start = performance.now()
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1)
+        const eased = easeInOutCubic(progress)
+        window.scrollTo(0, startY + distance * eased)
+        if (progress < 1) {
+          frame = requestAnimationFrame(tick)
+        }
+      }
+
+      frame = requestAnimationFrame(tick)
+    }
+
+    const onClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null
+      const href = anchor?.getAttribute("href")
+      if (!anchor || !href) return
+
+      const id = href.slice(1)
+      const element = id ? document.getElementById(id) : document.body
+      if (!element) return
+
+      event.preventDefault()
+      const headerOffset = window.innerWidth < 768 ? 88 : 96
+      const rect = element.getBoundingClientRect()
+      const targetY = Math.max(0, rect.top + window.scrollY - headerOffset)
+      smoothScrollTo(targetY)
+      history.replaceState(null, "", href)
+    }
+
+    document.addEventListener("click", onClick)
+    return () => {
+      cancelAnimationFrame(frame)
+      document.removeEventListener("click", onClick)
+    }
+  }, [])
+
   return (
-    <main className="overflow-x-clip bg-black">
-      <Navbar />
-      <EtherealBeamsHero />
-      <SectionDivider />
-      <PainSection />
-      <SectionDivider />
-      <SolutionSection />
-      <SectionDivider />
-      <HowItWorksSection />
-      <SectionDivider />
-      <PortfolioSection />
-      <SectionDivider />
-      <AboutSection />
-      <SectionDivider />
-      <PricingHintSection />
-      <SectionDivider />
-      <ContactSection />
-      <Footer />
-    </main>
+    <MotionConfig reducedMotion="user" transition={{ duration: 0.6, ease: naturalEase }}>
+      <main className="overflow-x-clip bg-black">
+        <Navbar />
+        <EtherealBeamsHero />
+        <SectionDivider />
+        <PainSection />
+        <SectionDivider />
+        <SolutionSection />
+        <SectionDivider />
+        <HowItWorksSection />
+        <SectionDivider />
+        <PortfolioSection />
+        <SectionDivider />
+        <AboutSection />
+        <SectionDivider />
+        <PricingHintSection />
+        <SectionDivider />
+        <ContactSection />
+        <Footer />
+      </main>
+    </MotionConfig>
   )
 }

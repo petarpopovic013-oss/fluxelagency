@@ -132,12 +132,17 @@ h1, h2, h3, h4, h5, h6 {
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {
   overflow-x: clip;
   text-wrap: pretty;
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img,
@@ -145,6 +150,20 @@ video,
 canvas,
 svg {
   max-width: 100%;
+}
+
+@media (pointer: coarse) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Custom scrollbar */

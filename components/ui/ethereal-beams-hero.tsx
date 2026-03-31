@@ -163,8 +163,8 @@ function PhoneMockup() {
     <motion.div
       initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: -10 }}
       animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }}
-      transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mt-8 flex w-full max-w-[21rem] items-center justify-center self-stretch px-2 sm:mt-10 sm:max-w-sm lg:mt-0 lg:px-0"
+      transition={{ duration: 1.05, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="relative mx-auto mt-8 flex w-full max-w-[21rem] items-center justify-center self-stretch px-2 sm:mt-10 sm:max-w-sm lg:mt-0 lg:px-0"
     >
       {/* Glow rings */}
       <div className="absolute h-56 w-56 rounded-full bg-cyan-400/15 blur-3xl animate-pulse sm:h-72 sm:w-72" />
@@ -173,8 +173,8 @@ function PhoneMockup() {
       {/* Phone frame with float animation */}
       <motion.div
         animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="relative aspect-[1/2] w-[min(72vw,16rem)] overflow-hidden rounded-[2rem] border border-white/15 bg-[#0d0d0d] shadow-2xl shadow-cyan-400/10 sm:w-[260px] sm:rounded-[38px]"
+        transition={{ duration: 6.5, repeat: Infinity, ease: [0.37, 0, 0.63, 1] }}
+        className="relative aspect-[1/2] w-[min(72vw,16rem)] overflow-hidden rounded-[2rem] border border-white/15 bg-[#0d0d0d] shadow-2xl shadow-cyan-400/10 will-change-transform sm:w-[260px] sm:rounded-[38px]"
       >
         {/* Notch */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#0d0d0d] rounded-b-2xl z-10 flex items-center justify-center">
@@ -251,8 +251,8 @@ function PhoneMockup() {
       <motion.div
         initial={{ opacity: 0, x: 40, scale: 0.8 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute right-0 top-10 max-w-[9.5rem] rounded-2xl border border-white/20 bg-white/10 px-2.5 py-2 shadow-xl backdrop-blur-xl sm:-right-4 sm:top-12 sm:max-w-none sm:px-3"
+        transition={{ duration: 0.75, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-1/2 top-10 ml-[3.8rem] max-w-[9.5rem] rounded-2xl border border-white/20 bg-white/10 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:left-auto sm:right-[-1rem] sm:top-12 sm:ml-0 sm:max-w-none sm:px-3"
       >
         <p className="text-white/50 text-[8px]">Nova rezervacija</p>
         <p className="text-white font-semibold text-[10px]">Marija M. &middot; 10:30</p>
@@ -263,8 +263,8 @@ function PhoneMockup() {
       <motion.div
         initial={{ opacity: 0, x: -40, scale: 0.8 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-14 left-0 rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl sm:-left-8 sm:bottom-20 sm:px-3"
+        transition={{ duration: 0.75, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute bottom-14 right-1/2 mr-[3.8rem] rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:bottom-20 sm:left-[-2rem] sm:right-auto sm:mr-0 sm:px-3"
       >
         <p className="text-emerald-400 text-[8px] font-semibold">+23% vise termina</p>
         <p className="text-white/50 text-[8px]">ovog meseca</p>
@@ -297,7 +297,7 @@ export default function EtherealBeamsHero() {
               <motion.h1
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.95, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
                 className="mb-5 text-[clamp(2.5rem,10vw,5.5rem)] font-black leading-[1.02] tracking-tight text-white sm:mb-6"
               >
                 Koliko klijenata ste<br />
@@ -305,7 +305,7 @@ export default function EtherealBeamsHero() {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.9, delay: 0.36, ease: [0.22, 1, 0.36, 1] }}
                   className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent animate-gradient-x"
                 >
                   nisu mogli da<br className="hidden sm:block" /> zakažu online?
@@ -316,7 +316,7 @@ export default function EtherealBeamsHero() {
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.85, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="mx-auto mb-8 max-w-xl text-base leading-7 text-white/70 sm:mb-10 sm:text-lg sm:leading-8 lg:mx-0 lg:text-xl"
               >
                 Pravimo sistem za online zakazivanje i profesionalni web sajt koji radi za vas
@@ -327,7 +327,7 @@ export default function EtherealBeamsHero() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.85, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
                 className="mb-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 lg:justify-start"
               >
                 <a
@@ -350,7 +350,7 @@ export default function EtherealBeamsHero() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col items-center gap-3 text-sm text-white/50 sm:flex-row sm:gap-4 lg:items-start"
               >
                 <div className="flex flex-wrap items-center justify-center gap-1.5 lg:justify-start">
@@ -359,7 +359,7 @@ export default function EtherealBeamsHero() {
                       key={i}
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.9 + i * 0.1, duration: 0.4, ease: "backOut" }}
+                      transition={{ delay: 0.66 + i * 0.08, duration: 0.36, ease: "backOut" }}
                       className="text-cyan-400 text-base"
                     >
                       ★
