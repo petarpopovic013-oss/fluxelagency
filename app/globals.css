@@ -92,6 +92,9 @@
   --animate-float: float 6s ease-in-out infinite;
   --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
   --animate-counter-glow: counter-glow 3s ease-in-out infinite;
+  --animate-aurora-drift: aurora-drift 12s ease-in-out infinite;
+  --animate-orbit-slow: orbit-slow 18s linear infinite;
+  --animate-warp-pulse: warp-pulse 4.8s ease-in-out infinite;
 }
 
 @keyframes gradient-x {
@@ -117,6 +120,23 @@
 @keyframes counter-glow {
   0%, 100% { text-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
   50% { text-shadow: 0 0 40px rgba(34, 211, 238, 0.6); }
+}
+
+@keyframes aurora-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate3d(2%, -4%, 0) scale(1.08) rotate(3deg); }
+  50% { transform: translate3d(-3%, 3%, 0) scale(0.96) rotate(-4deg); }
+  75% { transform: translate3d(4%, 2%, 0) scale(1.04) rotate(2deg); }
+}
+
+@keyframes orbit-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes warp-pulse {
+  0%, 100% { transform: scale(1); filter: saturate(1); }
+  50% { transform: scale(1.02); filter: saturate(1.12); }
 }
 
 body {

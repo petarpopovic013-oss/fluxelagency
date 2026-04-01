@@ -2,14 +2,13 @@
 
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import { useState, useEffect, useRef, type FormEvent } from "react"
-import { motion, MotionConfig, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
+import { useState, useEffect, type FormEvent } from "react"
+import { motion, MotionConfig, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import {
   PhoneOff, MessageSquareX, CalendarX, Globe, Clock,
-  Calendar, Bell, Zap, RefreshCw, Layout,
-  Check, Phone, Mail, MapPin, Star,
-  Shield, Users, Award, Headphones,
-  ChevronRight, Menu, X, ArrowRight, Quote,
+  Calendar, Bell, Zap, Layout,
+  Check, Phone, Mail, MapPin,
+  ChevronRight, Menu, X, ArrowRight,
   Code2, BarChart2, Sparkles,
 } from "lucide-react"
 
@@ -44,10 +43,10 @@ const IconX = ({ className = "w-4 h-4" }: SI) => (
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 52, scale: 0.94, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-8% 0px -6%" }}
-      transition={{ duration: 0.65, delay, ease: naturalEase }}
+      transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -58,10 +57,10 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 function SlideIn({ children, delay = 0, className = "", direction = "left" }: { children: React.ReactNode; delay?: number; className?: string; direction?: "left" | "right" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: direction === "left" ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: direction === "left" ? -72 : 72, rotate: direction === "left" ? -2.5 : 2.5, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, x: 0, rotate: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-8% 0px -6%" }}
-      transition={{ duration: 0.7, delay, ease: naturalEase }}
+      transition={{ duration: 0.95, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -72,59 +71,15 @@ function SlideIn({ children, delay = 0, className = "", direction = "left" }: { 
 function ScaleIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.975, y: 10 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.86, y: 42, rotateX: -14, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, scale: 1, y: 0, rotateX: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-8% 0px -6%" }}
-      transition={{ duration: 0.6, delay, ease: naturalEase }}
+      transition={{ duration: 0.95, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
     </motion.div>
   )
-}
-
-// Animated counter for stats
-function AnimatedCounter({ value, suffix = "" }: { value: string; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const numericPart = parseInt(value.replace(/\D/g, "")) || 0
-  const hasPlus = value.includes("+")
-  const isText = isNaN(parseInt(value))
-
-  if (isText) return <span ref={ref}>{value}</span>
-
-  return (
-    <span ref={ref}>
-      {isInView ? (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          <CountUp target={numericPart} />
-          {hasPlus && "+"}
-          {suffix}
-        </motion.span>
-      ) : "0"}
-    </span>
-  )
-}
-
-function CountUp({ target }: { target: number }) {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    let frame: number
-    const duration = 1500
-    const start = performance.now()
-    const step = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.round(eased * target))
-      if (progress < 1) frame = requestAnimationFrame(step)
-    }
-    frame = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(frame)
-  }, [target])
-  return <>{count}</>
 }
 
 // Magnetic hover effect
@@ -156,10 +111,10 @@ function SectionDivider() {
   return (
     <div className="relative h-px w-full overflow-hidden">
       <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
+        initial={{ scaleX: 0, opacity: 0.2 }}
+        whileInView={{ scaleX: 1, opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1.4, ease: naturalEase }}
+        transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
         className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent origin-center"
       />
     </div>
@@ -250,7 +205,7 @@ function Navbar() {
               whileTap={{ scale: 0.95 }}
               className="hidden min-h-11 items-center gap-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-bold text-black transition-colors hover:bg-cyan-300 md:inline-flex"
             >
-              Besplatan razgovor
+              Besplatan razgovor (15 min)
               <ArrowRight className="w-4 h-4" />
             </motion.a>
           </MagneticWrap>
@@ -295,7 +250,7 @@ function Navbar() {
                 transition={{ delay: 0.22, duration: 0.45, ease: naturalEase }}
                 className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-5 py-3.5 text-base font-bold text-black transition-all"
               >
-                Besplatan razgovor <ArrowRight className="w-4 h-4" />
+                Besplatan razgovor (15 min) <ArrowRight className="w-4 h-4" />
               </motion.a>
             </div>
           </motion.div>
@@ -313,8 +268,8 @@ function SectionLabel({ children }: { children: string }) {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-5"
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="mb-5 inline-flex animate-warp-pulse items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-400"
     >
       <Sparkles className="w-3 h-3" />
       {children}
@@ -334,27 +289,27 @@ const pains = [
   {
     icon: PhoneOff,
     title: "Klijenti zovu dok ste zauzeti - i odu kod konkurencije",
-    body: "Svaki propušten poziv je propušten prihod. Dok ste u radu sa jednim klijentom, drugi odlazi kod nekoga ko ima online zakazivanje.",
+    body: "Dok radite sa jednim klijentom, drugi zove, ne dobija odgovor, i zakazuje kod konkurencije koja ima online zakazivanje. Svaki propušten poziv = propušten novac.",
   },
   {
     icon: MessageSquareX,
     title: "Viber poruke se gomilaju, termini se gube u haosu",
-    body: "Zakazivanje kroz Viber je nepouzdano - poruke se brišu, termini se dupliraju, a vi stalno proveravate telefon.",
+    body: "Poruke se brišu, termini se dupliraju, klijenti se ljute kad dođe do zabune. Vi provlačite telefon umesto da radite svoj posao.",
   },
   {
     icon: CalendarX,
     title: "Klijenti ne dolaze jer nema automatskih podsećanja",
-    body: "Bez automatskog SMS ili email podsećanja, svaki deseti termin je 'no-show' - izgubljen prihod koji niko nije otkazao.",
+    body: "Bez automatskog podsećanja, klijenti jednostavno zaborave. Svaki no-show je termin koji ste mogli popuniti nekim drugim - ali niste znali na vreme.",
   },
   {
     icon: Globe,
-    title: "Nemate sajt ili imate sajt koji ne radi ništa za vas",
-    body: "Ako vas ne mogu pronaći na Googlu ili ne mogu odmah zakazati sa vašeg sajta, klijent odlazi dalje za 30 sekundi.",
+    title: "Nemate sajt ili imate sajt koji ne radi ništa za Vas",
+    body: "Ako Vas ne mogu pronaći na Googlu ili ne mogu odmah zakazati sa Vašeg sajta - klijent odlazi dalje za 30 sekundi. Vaš sajt treba da radi za Vas, ne samo da postoji.",
   },
   {
     icon: Clock,
-    title: "Trošite sate na administraciju umesto na rad koji volite",
-    body: "Svako jutro prepisivanje termina, podsećanje klijenata, odgovaranje na iste poruke - to su sati ukrađeni od vašeg stvarnog posla.",
+    title: "Svako jutro počinjete sa administracijom umesto pravim poslom",
+    body: "Prepisivanje termina, podsećanje klijenata, odgovaranje na iste poruke - svaki dan izgubite 1-2 sata na posao koji može da radi sistem umesto Vas.",
   },
 ]
 
@@ -369,16 +324,26 @@ function PainSection() {
           <SectionLabel>Prepoznajete li ovo?</SectionLabel>
           <h2 className={sectionTitle}>
             Svaki dan bez sistema za zakazivanje<br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-red-400 to-rose-500 bg-clip-text text-transparent"> košta vas novac</span>
+            <span className="bg-gradient-to-r from-red-400 to-rose-500 bg-clip-text text-transparent"> košta Vas novac</span>
           </h2>
           <p className={sectionBody}>
-            Razgovarali smo sa desetinama vlasnika malih biznisa u Srbiji. Evo šta čujemo iznova i iznova.
+            Ovo su problemi koje čujemo od vlasnika servisnih biznisa svake nedelje.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-6">
           {pains.map(({ icon: Icon, title, body }, i) => (
-            <ScaleIn key={title} delay={i * 0.08}>
+            <ScaleIn
+              key={title}
+              delay={i * 0.08}
+              className={
+                i === 3
+                  ? "lg:col-span-2 lg:col-start-2"
+                  : i === 4
+                    ? "lg:col-span-2 lg:col-start-4"
+                    : "lg:col-span-2"
+              }
+            >
               <motion.div
                 whileHover={{ scale: 1.03, y: -5, borderColor: "rgba(239,68,68,0.3)" }}
                 transition={{ duration: 0.3 }}
@@ -396,22 +361,15 @@ function PainSection() {
               </motion.div>
             </ScaleIn>
           ))}
-
-          {/* Empathy card */}
-          <ScaleIn delay={pains.length * 0.08} className="md:col-span-2 lg:col-span-1">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative flex h-full flex-col justify-center overflow-hidden rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5 sm:p-6"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-              <Quote className="w-8 h-8 text-cyan-400/40 mb-3" />
-              <p className="text-base italic leading-7 text-white/80 sm:text-[17px]">
-                &ldquo;Znamo ovo jer smo to čuli od desetina vlasnika biznisa. Nije problem u vama - problem je što niste imali pravi alat.&rdquo;
-              </p>
-              <p className="text-cyan-400 text-sm font-semibold mt-4">&mdash; Fluxel</p>
-            </motion.div>
-          </ScaleIn>
         </div>
+
+        <FadeIn delay={0.2} className="mt-6 md:mt-8">
+          <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5 text-center sm:p-6">
+            <p className="text-base leading-7 text-white/80 sm:text-[17px]">
+              Ovi problemi su isti za svaki servisni biznis - frizere, kozmetičare, terapeute. Rešenje takođe.
+            </p>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )
@@ -425,8 +383,8 @@ const systemParts = [
     title: "Profesionalni web sajt",
     color: "cyan",
     bullets: [
-      "Moderan, brz, mobilni dizajn prilagođen vašem brendu",
-      "Optimizovan za Google pretragu da vas klijenti pronađu",
+      "Moderan, brz, mobilni dizajn prilagođen Vašem brendu",
+      "Optimizovan za Google pretragu da Vas klijenti pronađu",
       "Svaka stranica konvertuje posetioce u stvarne klijente",
     ],
   },
@@ -446,7 +404,7 @@ const systemParts = [
     color: "violet",
     bullets: [
       "SMS i email podsećanja šalju se automatski pre termina",
-      "Smanjuje 'no-show' termine i do 50%",
+      "Smanjuje no-show termine - više popunjenih termina, više prihoda",
       "Automatske poruke za potvrdu, otkazivanje i follow-up",
     ],
   },
@@ -456,7 +414,7 @@ const systemParts = [
     color: "amber",
     bullets: [
       "Automatizovani upitnici, recenzije i follow-up poruke",
-      "Manje administracije, više vremena za stvarni rad",
+      "Vraćate sebi 1-2 sata dnevno koje ste trošili na administraciju",
       "Izveštaji o zakazivanjima i prihodu na jednom mestu",
     ],
   },
@@ -480,12 +438,11 @@ function SolutionSection() {
         <FadeIn className={sectionIntro}>
           <SectionLabel>Rešenje</SectionLabel>
           <h2 className={sectionTitle}>
-            Sistem koji radi umesto vas -<br className="hidden sm:block" />
+            Sistem koji radi umesto Vas -<br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent"> čak i kad spavate</span>
           </h2>
           <p className={sectionBody}>
-            Ovo nije lista usluga. Ovo je jedan integrisani sistem koji rešava svaki problem koji smo
-            gore naveli - odjednom.
+            Ovo nije lista usluga. Ovo je jedan sistem koji rešava sve probleme koje smo gore opisali - odjednom.
           </p>
         </FadeIn>
 
@@ -515,7 +472,7 @@ function SolutionSection() {
                       transition={{ delay: i * 0.1 + j * 0.08, duration: 0.5 }}
                       className="flex items-start gap-2.5"
                     >
-                      <Check className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
+                      <span className="mt-0.5 shrink-0 text-cyan-400">✓</span>
                       <span className="text-sm leading-6 text-white/65 sm:text-[15px]">{b}</span>
                     </motion.li>
                   ))}
@@ -528,8 +485,7 @@ function SolutionSection() {
         <FadeIn>
           <div className="rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.08] p-5 text-center sm:p-6">
             <p className="text-base font-medium leading-7 text-white sm:text-lg">
-              Sve ovo funkcionise kao <span className="text-cyan-400 font-bold">jedan sistem</span> -
-              bez da vi morate da brinete o tehnologiji.
+              Sve ovo funkcioniše kao <span className="text-cyan-400 font-bold">jedan sistem</span> - bez da Vi morate da brinete o tehnologiji.
             </p>
           </div>
         </FadeIn>
@@ -544,19 +500,19 @@ const steps = [
   {
     n: "01",
     title: "Razgovor",
-    body: "Javite nam se i ispričajte nam o vašem biznisu. Razumemo vaše potrebe i predlažemo konkretno rešenje - bez žargona.",
+    body: "Pokazaćemo Vam tačno kako bi Vaš sistem izgledao i koliko vremena može da Vam uštedi - za 15 minuta, bez obaveza.",
     icon: Phone,
   },
   {
     n: "02",
     title: "Izrada",
-    body: "Mi dizajniramo i razvijamo vaš sistem. Vi samo dajete feedback - mi radimo sve ostalo. Bez stresa, bez tehničkih problema.",
+    body: "Mi dizajniramo i razvijamo Vaš sistem. Vi samo dajete feedback - mi radimo sve ostalo. Bez stresa, bez tehničkih problema.",
     icon: Code2,
   },
   {
     n: "03",
     title: "Lansiranje + Podrška",
-    body: "Vaš sistem ide uživo. Mi ostajemo uz vas - održavanje, ažuriranja i podrška su uključeni. Niste sami.",
+    body: "Vaš sistem ide uživo. Mi ostajemo uz Vas - održavanje, ažuriranja i podrška su uključeni. Ako nešto ne radi kako treba, mi to rešavamo.",
     icon: BarChart2,
   },
 ]
@@ -566,12 +522,12 @@ function HowItWorksSection() {
     <section id="proces" className={`${sectionShell} bg-[#0c0d12]`}>
       <div className={containerShell}>
         <FadeIn className={sectionIntro}>
-          <SectionLabel>Kako do vašeg sistema</SectionLabel>
+          <SectionLabel>Kako do Vašeg sistema</SectionLabel>
           <h2 className={sectionTitle}>
-            Samo <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">3 koraka</span> do sistema koji<br className="hidden sm:block" /> radi za vas
+            Samo <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">3 koraka</span> do sistema koji<br className="hidden sm:block" /> radi za Vas
           </h2>
           <p className="mx-auto max-w-xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-            Nema komplikacija. Nema tehničkih znanja koja su vam potrebna. Samo razgovor, izrada i rezultati.
+            Nema komplikacija. Nema tehničkih znanja koja su Vam potrebna. Samo razgovor, izrada i rezultati.
           </p>
         </FadeIn>
 
@@ -627,7 +583,7 @@ function HowItWorksSection() {
               className="relative inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
             >
               <span className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl -z-10" />
-              Pokrenite vas sistem danas
+              Zakažite besplatan razgovor (15 min)
               <ArrowRight className="w-5 h-5" />
             </motion.a>
           </MagneticWrap>
@@ -655,8 +611,8 @@ const projects: Project[] = [
   {
     type: "Frizerski salon",
     title: "RSBARBERSHOP - Sistem za zakazivanje",
-    desc: "Izgradjen kompletan sistem za online zakazivanje sa automatskim EMAIL podsecanjima.",
-    tags: ["Online zakazivanje", "Email podsecanja", "Admin Panel"],
+    desc: "Problem: zakazivanje je išlo preko poziva i Viber-a, termini su se gubili. Rešenje: kompletan sistem za online zakazivanje sa automatskim email podsećanjima. Klijenti sada sami zakazuju 24/7.",
+    tags: ["Online zakazivanje", "Email podsećanja", "Admin Panel"],
     gradient: "from-rose-900/60 to-pink-900/40",
     letter: "RS",
     testimonial: null,
@@ -666,7 +622,7 @@ const projects: Project[] = [
   {
     type: "Psihoterapeut",
     title: "dr Jelena Petrović Popović - Web prezentacija",
-    desc: "Profesionalni sajt koji komunicira poverenje i ekspertizu. Integrisano zakazivanje prvog razgovora direktno sa sajta.",
+    desc: "Problem: nije imala profesionalno online prisustvo i klijenti nisu mogli lako da zakažu. Rešenje: profesionalni sajt koji komunicira poverenje sa integrisanim zakazivanjem prvog razgovora direktno sa sajta.",
     tags: ["Web prezentacija", "Online zakazivanje", "SEO optimizacija"],
     gradient: "from-violet-900/60 to-indigo-900/40",
     letter: "M",
@@ -699,13 +655,17 @@ function PortfolioSection() {
             Sistemi koje smo <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">već napravili</span>
           </h2>
           <p className={sectionBody}>
-            Svaki projekat je bio konkretan problem. Svako rešenje je donelo merljive rezultate.
+            Svaki projekat je bio konkretan problem koji smo rešili konkretnim sistemom.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-4 md:gap-6">
           {projects.map(({ type, title, desc, tags, gradient, letter, image, link, testimonial }, i) => (
-            <FadeIn key={title} delay={i * 0.1}>
+            <FadeIn
+              key={title}
+              delay={i * 0.1}
+              className={i === 2 ? "md:col-span-2 md:col-start-2" : "md:col-span-2"}
+            >
               <motion.a
                 href={link ?? "#"}
                 target={link ? "_blank" : undefined}
@@ -791,65 +751,38 @@ function PortfolioSection() {
 
 // ─── 5. About ─────────────────────────────────────────────────────────────────
 
-const trustStats = [
-  { icon: Award, value: "12+", label: "Završenih projekata" },
-  { icon: Users, value: "10+", label: "Zadovoljnih klijenata" },
-  { icon: Headphones, value: "7 dana", label: "Podrška u nedelji" },
-  { icon: Shield, value: "Uključeno", label: "Održavanje 1. mesec" },
-]
-
 function AboutSection() {
   return (
     <section id="o-nama" className={`${sectionShell} bg-[#0c0d12]`}>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className={containerShell}>
-        <div className="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <SlideIn direction="left">
+        <div className="mx-auto max-w-4xl">
+          <FadeIn>
             <SectionLabel>Zašto Fluxel?</SectionLabel>
             <h2 className="mb-5 text-[clamp(2rem,8vw,3.25rem)] font-black leading-[1.05] tracking-tight text-white sm:mb-6">
               Specijalizovani, ne<br /><span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">generalistički</span>
             </h2>
             <div className="space-y-4 text-[15px] leading-7 text-white/65 sm:text-base sm:leading-8">
               <p>
-                Mi ne radimo &ldquo;sve&rdquo;. Fokusirani smo isključivo na sisteme za zakazivanje i automatizaciju
-                za servisne biznise - frizere, kozmetičare, terapeute, škole, auto škole, rent-a-car.
-                To znači da razumemo vaš posao bolje od bilo kog generalnog web studija.
+                Mi ne radimo &ldquo;sve&rdquo;. Fokusirani smo isključivo na sisteme za zakazivanje i automatizaciju za servisne biznise - frizere, kozmetičare, terapeute, škole, auto škole, rent-a-car. To znači da razumemo Vaš posao bolje od bilo kog generalnog web studija.
               </p>
               <p>
-                Proučili smo kako servisni biznisi zaista funkcionišu i gde gube klijente i novac.
-                Naša rešenja su napravljena da reše tačno te probleme - ne samo da &ldquo;naprave sajt&rdquo;.
+                Znamo tačno gde servisni biznisi gube klijente i novac. Naša rešenja su napravljena da reše te probleme - ne samo da &ldquo;naprave sajt&rdquo;.
               </p>
               <p>
-                Kada radimo sa vama, niste broj na listi. Ostajemo uz vas i posle lansiranja sa
-                redovnim održavanjem, ažuriranjima i podrškom.
+                Kada radimo sa Vama, niste broj na listi. Ostajemo uz Vas i posle lansiranja sa redovnim održavanjem, ažuriranjima i podrškom.
               </p>
             </div>
-          </SlideIn>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 gap-4 min-[430px]:grid-cols-2">
-            {trustStats.map(({ icon: Icon, value, label }, i) => (
-              <ScaleIn key={label} delay={i * 0.12}>
-                <motion.div
-                  whileHover={{ scale: 1.06, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="group rounded-2xl border border-white/[0.15] bg-[#0c0d12] p-6 text-center transition-all cursor-default hover:border-cyan-400/25 sm:p-7"
-                >
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-11 h-11 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3 group-hover:bg-cyan-400/20 group-hover:shadow-lg group-hover:shadow-cyan-400/15 transition-all duration-300"
-                  >
-                    <Icon className="w-5 h-5 text-cyan-400" />
-                  </motion.div>
-                  <div className="mb-1 text-3xl font-black text-white">
-                    <AnimatedCounter value={value} />
-                  </div>
-                  <div className="text-sm leading-6 text-white/65">{label}</div>
-                </motion.div>
-              </ScaleIn>
-            ))}
-          </div>
+          <FadeIn delay={0.12} className="mt-8">
+            <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5 text-center sm:p-6">
+              <p className="text-sm font-medium leading-7 text-white/85 sm:text-base">
+                Svaki klijent dobija podršku 7 dana u nedelji i besplatno održavanje prvog meseca.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>
@@ -863,9 +796,6 @@ const included = [
   { icon: Calendar, text: "Sistem za online zakazivanje" },
   { icon: Bell, text: "Automatska SMS/email podsećanja za klijente" },
   { icon: Globe, text: "Osnovna SEO optimizacija (Google vidljivost)" },
-  { icon: RefreshCw, text: "Mesečno održavanje i ažuriranja (1. mesec)" },
-  { icon: Headphones, text: "Obuka za korišćenje sistema" },
-  { icon: Star, text: "Podrška 7 dana u nedelji" },
 ]
 
 function PricingHintSection() {
@@ -877,11 +807,11 @@ function PricingHintSection() {
         <FadeIn className="mb-10 text-center sm:mb-12">
           <SectionLabel>Šta dobijate?</SectionLabel>
           <h2 className={sectionTitle}>
-            Sve što vam treba -<br />
+            Sve što Vam treba -<br />
             <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">na jednom mestu</span>
           </h2>
           <p className="mx-auto max-w-xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-            Jedan projekat. Jedan tim. Jedno rešenje koje pokriva sve od sajta do automatizacije.
+            Jedan projekat. Jedan tim. Jedno rešenje koje pokriva sve - od sajta do automatizacije. Bez žongliranja sa različitim freelancerima.
           </p>
         </FadeIn>
 
@@ -905,14 +835,14 @@ function PricingHintSection() {
                       <Icon className="w-4 h-4 text-cyan-400" />
                     </motion.div>
                     <span className="text-sm font-medium leading-6 text-white/80 transition-colors duration-300 group-hover/item:text-white sm:text-base">{text}</span>
-                    <Check className="ml-auto mt-1 h-4 w-4 shrink-0 text-cyan-400 transition-transform duration-300 group-hover/item:scale-125" />
+                    <span className="ml-auto mt-1 shrink-0 text-cyan-400 transition-transform duration-300 group-hover/item:scale-125">✓</span>
                   </motion.li>
                 ))}
               </ul>
             </div>
             <div className="border-t border-white/[0.15] bg-cyan-400/5 p-5 text-center sm:p-8">
               <p className="mb-2 text-sm leading-6 text-white/70 sm:text-base">
-                Cena zavisi od vaših specifičnih potreba i veličine biznisa.
+                Cena zavisi od Vaših specifičnih potreba i veličine biznisa.
               </p>
               <p className="mb-5 text-base font-semibold leading-7 text-white sm:mb-6 sm:text-lg">
                 Javite nam se za <span className="text-cyan-400 font-bold">besplatnu procenu</span> - bez obaveza.
@@ -924,7 +854,7 @@ function PricingHintSection() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
                 >
-                  Tražim procenu &rarr;
+                  Zakažite besplatan razgovor (15 min) &rarr;
                 </motion.a>
               </MagneticWrap>
             </div>
@@ -935,7 +865,42 @@ function PricingHintSection() {
   )
 }
 
-// ─── 7. Contact ───────────────────────────────────────────────────────────────
+
+// ─── 7. Urgency + Risk Reversal ───────────────────────────────────────────────
+
+function UrgencySection() {
+  return (
+    <section id="ogranicena-mesta" className={`${sectionShell} bg-[#0c0d12]`}>
+      <div className={containerShell}>
+        <FadeIn className="mx-auto max-w-4xl">
+          <div className="rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.08] p-6 sm:p-8">
+            <h2 className="mb-4 text-[clamp(1.75rem,6vw,2.5rem)] font-black leading-[1.1] tracking-tight text-white">
+              Primamo ograničen broj klijenata mesečno
+            </h2>
+            <p className="mb-4 text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
+              Pošto svaki projekat radimo detaljno i sa punom pažnjom, možemo da primimo samo nekoliko novih klijenata mesečno. Ako želite sistem koji će raditi za Vas do sledeće sezone, javite se sada.
+            </p>
+            <p className="mb-6 text-sm leading-7 text-white/70 sm:text-base">
+              Ako posle prvog razgovora odlučite da ovo nije za Vas - nema problema. Nema obaveza, nema pritiska. Ali barem ćete znati tačno šta je moguće za Vaš biznis.
+            </p>
+            <MagneticWrap className="inline-block">
+              <motion.a
+                href="#kontakt"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
+              >
+                Zakažite besplatan razgovor (15 min)
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+            </MagneticWrap>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  )
+}
+// ─── 8. Contact ───────────────────────────────────────────────────────────────
 
 const bizTypes = [
   "Frizerski salon","Kozmetički salon","Stomatološka ordinacija",
@@ -968,7 +933,7 @@ function ContactSection() {
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">da gubite klijente?</span>
           </h2>
           <p className={sectionBody}>
-            Zakažite besplatan razgovor i saznajte kako sistem za zakazivanje može da promeni vaš biznis.
+            Zakažite besplatan razgovor i pokazaćemo Vam tačno kako bi Vaš sistem izgledao - za 15 minuta.
             Bez obaveza, bez tehničkog žargona.
           </p>
         </FadeIn>
@@ -1055,7 +1020,7 @@ function ContactSection() {
                       transition={{ delay: i * 0.08, duration: 0.4 }}
                       className="flex items-center gap-2.5"
                     >
-                      <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <span className="text-cyan-400 shrink-0">✓</span>
                       <span className="text-sm leading-6 text-white/65">{t}</span>
                     </motion.div>
                   ))}
@@ -1133,7 +1098,7 @@ function ContactSection() {
                       transition={{ delay: 0.24, duration: 0.5 }}
                     >
                       <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">Poruka (opciono)</label>
-                      <textarea placeholder="Opišite vaš biznis i šta vam je potrebno..."
+                      <textarea placeholder="Opišite Vaš biznis i šta Vam je potrebno..."
                         rows={4} value={form.msg} onChange={e => setForm({...form, msg: e.target.value})}
                         className={`${inputCls} resize-none`} />
                     </motion.div>
@@ -1152,14 +1117,14 @@ function ContactSection() {
                           className="relative mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 py-4 text-base font-bold text-black transition-colors sm:min-h-14"
                         >
                           <span className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl -z-10" />
-                          Zakazite besplatan razgovor
+                          Zakažite besplatan razgovor (15 min)
                           <ArrowRight className="w-5 h-5" />
                         </motion.button>
                       </MagneticWrap>
                     </motion.div>
 
                     <p className="text-white/45 text-xs text-center">
-                      Vasi podaci su bezbedni. Bez spam poruka.
+                      Vaši podaci su bezbedni. Bez spam poruka. Odgovaramo u roku od 24 sata.
                     </p>
                   </motion.form>
                 )}
@@ -1200,7 +1165,7 @@ function Footer() {
               &lt;flux<span className="text-cyan-400">el.rs/&gt;</span>
             </motion.a>
             <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
-              Specijalizovani sistemi za online zakazivanje i automatizaciju za mali servisni biznis u Srbiji.
+              Sistemi za zakazivanje i automatizaciju za servisne biznise u Srbiji.
             </p>
             <div className="flex gap-3 mt-5">
               {([
@@ -1252,7 +1217,7 @@ function Footer() {
               whileHover={{ x: 5 }}
               className="mt-5 inline-flex items-center gap-2 text-cyan-400 text-sm font-semibold hover:text-cyan-300 transition-colors"
             >
-              Besplatan razgovor <ChevronRight className="w-4 h-4" />
+              Besplatan razgovor (15 min) <ChevronRight className="w-4 h-4" />
             </motion.a>
           </FadeIn>
         </div>
@@ -1349,6 +1314,8 @@ export default function Home() {
         <AboutSection />
         <SectionDivider />
         <PricingHintSection />
+        <SectionDivider />
+        <UrgencySection />
         <SectionDivider />
         <ContactSection />
         <Footer />

@@ -17,9 +17,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Fluxel — Srpska agencija za web razvoj i digitalni dizajn",
+  title: "<fluxel.rs/>",
   description:
-    "Fluxel je srpska web agencija iz Beograda. Gradimo sajtove, web aplikacije i digitalne strategije koje donose rezultate.",
+    "Fluxel je srpska web agencija iz Novog Sada. Gradimo sajtove, web aplikacije i digitalne strategije koje donose rezultate.",
 };
 
 export default function RootLayout({

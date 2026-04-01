@@ -1,0 +1,161 @@
+﻿FLUXEL - KOMPLETNA REVIZIJA COPY-JA
+Instrukcije za Claude Code / Codex
+Sve izmene su finalne - implementiraj taÄno kako piÅ¡e
+NAPOMENA ZA AI: Ovaj dokument sadrÅ¾i kompletan revidirani copy za fluxelagency.vercel.app sajt. Zameni svaki navedeni deo taÄno kako je napisano. Koristi latiniÄne kvaÄice (âœ“), obiÄne crtice (-) umesto dugaÄkih crtica, i veliko slovo V za persiranje i koristi srpska slova sa kvaÄicama (ÄÄ‡Å¾Å¡Ä‘).
+1. HERO SEKCIJA
+OBRISATI: "10+ zadovoljnih klijenata" badge i "Dostupni 7 dana u nedelji" ispod njega.
+Headline (ostaje isti):
+Koliko klijenata ste izgubili danas jer nisu mogli da zakaÅ¾u online?
+Subheadline (IZMENITI):
+STARI TEKST: "Pravimo sistem za online zakazivanje i profesionalni web sajt koji radi za vas 24/7 - Äak i dok spavate."
+NOVI TEKST: "Pravimo sisteme za zakazivanje koji rade umesto Vas - 24/7. Bez Viber haosa, bez propuÅ¡tenih termina, bez ruÄnog podseÄ‡anja."
+CTA dugmad (IZMENITI):
+Primarni CTA: "ZakaÅ¾ite besplatan razgovor (15 min)"
+Sekundarni CTA: "Pogledaj kako funkcioniÅ¡e" (ostaje isto)
+Social proof zamena:
+Umesto zvezdica i "10+ zadovoljnih klijenata", stavi jednu reÄenicu: "Specijalizovani iskljuÄivo za servisne biznise u Srbiji"
+2. PROBLEM SEKCIJA ("Prepoznajete li ovo?")
+Headline (IZMENITI):
+STARI: "Svaki dan bez sistema za zakazivanje koÅ¡ta vas novac"
+NOVI: "Svaki dan bez sistema za zakazivanje koÅ¡ta Vas novac"
+Napomena: Samo promena malih/velikih slova - "vas" postaje "Vas".
+Subheadline (IZMENITI):
+STARI: "Razgovarali smo sa desetinama vlasnika malih biznisa u Srbiji. Evo Å¡ta Äujemo iznova i iznova."
+NOVI: "Ovo su problemi koje Äujemo od vlasnika servisnih biznisa svake nedelje."
+Problem kartice (IZMENITI TEKST):
+Kartica 1 - naslov: "Klijenti zovu dok ste zauzeti - i odu kod konkurencije"
+STARI opis: "Svaki propuÅ¡ten poziv je propuÅ¡ten prihod. Dok ste u radu sa jednim klijentom, drugi odlazi kod nekoga ko ima online zakazivanje."
+NOVI opis: "Dok radite sa jednim klijentom, drugi zove, ne dobija odgovor, i zakazuje kod konkurencije koja ima online zakazivanje. Svaki propuÅ¡ten poziv = propuÅ¡ten novac."
+Kartica 2 - naslov: "Viber poruke se gomilaju, termini se gube u haosu"
+STARI opis: "Zakazivanje kroz Viber je nepouzdano - poruke se briÅ¡u, termini se dupliraju, a vi stalno proveravate telefon."
+NOVI opis: "Poruke se briÅ¡u, termini se dupliraju, klijenti se ljute kad doÄ‘e do zabune. Vi provlaÄite telefon umesto da radite svoj posao."
+Kartica 3 - naslov (IZMENITI): "Klijenti ne dolaze jer nema automatskih podseÄ‡anja"
+STARI opis: "Bez automatskog SMS ili email podseÄ‡anja, svaki deseti termin je 'no-show' - izgubljen prihod koji niko nije otkazao."
+NOVI opis: "Bez automatskog podseÄ‡anja, klijenti jednostavno zaborave. Svaki no-show je termin koji ste mogli popuniti nekim drugim - ali niste znali na vreme."
+Kartica 4 - naslov: "Nemate sajt ili imate sajt koji ne radi niÅ¡ta za Vas"
+STARI opis: "Ako vas ne mogu pronaÄ‡i na Googlu ili ne mogu odmah zakazati sa vaÅ¡eg sajta, klijent odlazi dalje za 30 sekundi."
+NOVI opis: "Ako Vas ne mogu pronaÄ‡i na Googlu ili ne mogu odmah zakazati sa VaÅ¡eg sajta - klijent odlazi dalje za 30 sekundi. VaÅ¡ sajt treba da radi za Vas, ne samo da postoji."
+Kartica 5 - naslov (IZMENITI): STARI: "TroÅ¡ite sate na administraciju umesto na rad koji volite"
+NOVI naslov: "Svako jutro poÄinjete sa administracijom umesto pravim poslom"
+STARI opis: "Svako jutro prepisivanje termina, podseÄ‡anje klijenata, odgovaranje na iste poruke - to su sati ukradeni od vaÅ¡eg stvarnog posla."
+NOVI opis: "Prepisivanje termina, podseÄ‡anje klijenata, odgovaranje na iste poruke - svaki dan izgubite 1-2 sata na posao koji moÅ¾e da radi sistem umesto Vas."
+3. CITAT BLOK
+KOMPLETNO OBRISATI stari self-quote: "Znamo ovo jer smo to Äuli od desetina vlasnika biznisa..." - Fluxel
+ZAMENITI SA: Jednostavan tekst bez quote formata: "Ovi problemi su isti za svaki servisni biznis - frizere, kozmetiÄare, terapeute. ReÅ¡enje takoÄ‘e."
+4. REÅ ENJE SEKCIJA
+Headline (IZMENITI):
+STARI: "Sistem koji radi umesto vas - Äak i kad spavate"
+NOVI: "Sistem koji radi umesto Vas - Äak i kad spavate"
+Napomena: Samo promena malih/velikih slova - "vas" postaje "Vas".
+Subheadline (IZMENITI):
+STARI: "Ovo nije lista usluga. Ovo je jedan integrisani sistem koji reÅ¡ava svaki problem koji smo gore naveli - odjednom."
+NOVI: "Ovo nije lista usluga. Ovo je jedan sistem koji reÅ¡ava sve probleme koje smo gore opisali - odjednom."
+Feature kartice - DODATI ISHODE:
+Kartica: Profesionalni web sajt
+Moderan, brz, mobilni dizajn prilagoÄ‘en VaÅ¡em brendu
+Optimizovan za Google pretragu da Vas klijenti pronaÄ‘u
+Svaka stranica konvertuje posetioce u stvarne klijente
+Kartica: Online zakazivanje 24/7
+Klijenti zakazuju sami sa telefona - u bilo koje doba dana
+VaÅ¡ kalendar se aÅ¾urira automatski, bez telefoniranja
+Integracija sa Google kalendarom i SMS potvrdom
+Kartica: Automatska podseÄ‡anja
+SMS i email podseÄ‡anja Å¡alju se automatski pre termina
+Smanjuje no-show termine - viÅ¡e popunjenih termina, viÅ¡e prihoda
+Automatske poruke za potvrdu, otkazivanje i follow-up
+Kartica: Automatizacija procesa
+Automatizovani upitnici, recenzije i follow-up poruke
+VraÄ‡ate sebi 1-2 sata dnevno koje ste troÅ¡ili na administraciju
+IzveÅ¡taji o zakazivanjima i prihodu na jednom mestu
+Banner tekst na dnu (IZMENITI): "Sve ovo funkcioniÅ¡e kao jedan sistem - bez da Vi morate da brinete o tehnologiji."
+5. PROCES SEKCIJA ("Samo 3 koraka")
+Headline (ostaje):
+"Samo 3 koraka do sistema koji radi za Vas"
+Subheadline (IZMENITI):
+STARI: "Nema komplikacija. Nema tehniÄkih znanja koja su vam potrebna. Samo razgovor, izrada i rezultati."
+NOVI: "Nema komplikacija. Nema tehniÄkih znanja koja su Vam potrebna. Samo razgovor, izrada i rezultati."
+Korak 1 - Razgovor (IZMENITI opis):
+STARI: "Javite nam se i ispriÄajte nam o vaÅ¡em biznisu. Razumemo vaÅ¡e potrebe i predlaÅ¾emo konkretno reÅ¡enje - bez Å¾argona."
+NOVI: "PokazaÄ‡emo Vam taÄno kako bi VaÅ¡ sistem izgledao i koliko vremena moÅ¾e da Vam uÅ¡tedi - za 15 minuta, bez obaveza."
+Korak 2 - Izrada (IZMENITI opis):
+STARI: "Mi dizajniramo i razvijamo vaÅ¡ sistem. Vi samo dajete feedback - mi radimo sve ostalo. Bez stresa, bez tehniÄkih problema."
+NOVI: "Mi dizajniramo i razvijamo VaÅ¡ sistem. Vi samo dajete feedback - mi radimo sve ostalo. Bez stresa, bez tehniÄkih problema."
+Korak 3 - Lansiranje + PodrÅ¡ka (IZMENITI opis):
+STARI: "VaÅ¡ sistem ide uÅ¾ivo. Mi ostajemo uz vas - odrÅ¾avanje, aÅ¾uriranja i podrÅ¡ka su ukljuÄeni. Niste sami."
+NOVI: "VaÅ¡ sistem ide uÅ¾ivo. Mi ostajemo uz Vas - odrÅ¾avanje, aÅ¾uriranja i podrÅ¡ka su ukljuÄeni. Ako neÅ¡to ne radi kako treba, mi to reÅ¡avamo."
+6. PORTFOLIO SEKCIJA ("NaÅ¡i radovi")
+Headline (ostaje):
+"Sistemi koje smo veÄ‡ napravili"
+Subheadline (IZMENITI):
+STARI: "Svaki projekat je bio konkretan problem. Svako reÅ¡enje je donelo merljive rezultate."
+NOVI: "Svaki projekat je bio konkretan problem koji smo reÅ¡ili konkretnim sistemom."
+Kartica: RSBARBERSHOP (IZMENITI):
+STARI opis: "IzgraÄ‘en kompletan sistem za online zakazivanje sa automatskim EMAIL podseÄ‡anjima."
+NOVI opis: "Problem: zakazivanje je iÅ¡lo preko poziva i Viber-a, termini su se gubili. ReÅ¡enje: kompletan sistem za online zakazivanje sa automatskim email podseÄ‡anjima. Klijenti sada sami zakazuju 24/7."
+Kartica: dr Jelena PetroviÄ‡ PopoviÄ‡ (IZMENITI):
+STARI opis: "Profesionalni sajt koji komunicira poverenje i ekspertizu. Integrisano zakazivanje prvog razgovora direktno sa sajta."
+NOVI opis: "Problem: nije imala profesionalno online prisustvo i klijenti nisu mogli lako da zakaÅ¾u. ReÅ¡enje: profesionalni sajt koji komunicira poverenje sa integrisanim zakazivanjem prvog razgovora direktno sa sajta."
+7. ZAÅ TO FLUXEL SEKCIJA
+Headline (ostaje):
+"Specijalizovani, ne generalistiÄki"
+Tekst ispod (KOMPLETNO ZAMENITI):
+OBRISATI CEO STARI TEKST (tri paragrafa o tome kako ne radite sve, kako ste prouÄili servisne biznise, i kako ostajete uz klijente)
+NOVI TEKST (3 paragrafa): 
+"Mi ne radimo "sve". Fokusirani smo iskljuÄivo na sisteme za zakazivanje i automatizaciju za servisne biznise - frizere, kozmetiÄare, terapeute, Å¡kole, auto Å¡kole, rent-a-car. To znaÄi da razumemo VaÅ¡ posao bolje od bilo kog generalnog web studija."
+"Znamo taÄno gde servisni biznisi gube klijente i novac. NaÅ¡a reÅ¡enja su napravljena da reÅ¡e te probleme - ne samo da "naprave sajt"."
+"Kada radimo sa Vama, niste broj na listi. Ostajemo uz Vas i posle lansiranja sa redovnim odrÅ¾avanjem, aÅ¾uriranjima i podrÅ¡kom."
+Statistike (OBRISATI):
+OBRISATI KOMPLETNO: "12+ zavrÅ¡enih projekata", "10+ zadovoljnih klijenata", "PodrÅ¡ka u nedelji", "UkljuÄeno odrÅ¾avanje 1. mesec" - sve Äetiri statistike kartice. Zameniti sa jednim redom teksta: "Svaki klijent dobija podrÅ¡ku 7 dana u nedelji i besplatno odrÅ¾avanje prvog meseca."
+8. Å TA DOBIJATE SEKCIJA
+Headline (IZMENITI):
+STARI: "Sve Å¡to vam treba - na jednom mestu"
+NOVI: "Sve Å¡to Vam treba - na jednom mestu"
+Subheadline (IZMENITI):
+STARI: "Jedan projekat. Jedan tim. Jedno reÅ¡enje koje pokriva sve od sajta do automatizacije."
+NOVI: "Jedan projekat. Jedan tim. Jedno reÅ¡enje koje pokriva sve - od sajta do automatizacije. Bez Å¾ongliranja sa razliÄitim freelancerima."
+Checklist stavke (ostaju ali presloviti):
+Profesionalni web sajt po meri
+Sistem za online zakazivanje
+Automatska SMS/email podseÄ‡anja za klijente
+Osnovna SEO optimizacija (Google vidljivost)
+9. NOVA SEKCIJA - DODATI PRE KONTAKT SEKCIJE
+OVO JE POTPUNO NOVA SEKCIJA - dodati je izmeÄ‘u "Å ta dobijate" i "Kontakt" sekcije.
+Urgencija + Risk Reversal blok:
+Headline: "Primamo ograniÄen broj klijenata meseÄno"
+Tekst ispod: "PoÅ¡to svaki projekat radimo detaljno i sa punom paÅ¾njom, moÅ¾emo da primimo samo nekoliko novih klijenata meseÄno. Ako Å¾elite sistem koji Ä‡e raditi za Vas do sledeÄ‡e sezone, javite se sada."
+Risk reversal tekst: "Ako posle prvog razgovora odluÄite da ovo nije za Vas - nema problema. Nema obaveza, nema pritiska. Ali barem Ä‡ete znati taÄno Å¡ta je moguÄ‡e za VaÅ¡ biznis."
+CTA dugme: "ZakaÅ¾ite besplatan razgovor (15 min)"
+10. KONTAKT SEKCIJA
+Headline (ostaje):
+"Spremni da prestanete da gubite klijente?"
+Subheadline (IZMENITI):
+STARI: "ZakaÅ¾ite besplatan razgovor i saznajte kako sistem za zakazivanje moÅ¾e da promeni vaÅ¡ biznis. Bez obaveza, bez tehniÄkog Å¾argona."
+NOVI: "ZakaÅ¾ite besplatan razgovor i pokazaÄ‡emo Vam taÄno kako bi VaÅ¡ sistem izgledao - za 15 minuta. Bez obaveza, bez tehniÄkog Å¾argona."
+CTA dugme (IZMENITI):
+STARI: "ZakaÅ¾ite besplatan razgovor"
+NOVI: "ZakaÅ¾ite besplatan razgovor (15 min)"
+Ispod forme dodati:
+NOVI TEKST: "VaÅ¡i podaci su bezbedni. Bez spam poruka. Odgovaramo u roku od 24 sata."
+11. FOOTER
+STARI tagline: "Specijalizovani sistemi za online zakazivanje i automatizaciju za mali servisni biznis u Srbiji."
+NOVI tagline: "Sistemi za zakazivanje i automatizaciju za servisne biznise u Srbiji."
+12. GLOBALNA PRAVILA ZA CEO SAJT
+Primeni ova pravila na SVAKI deo sajta, ukljuÄujuÄ‡i delove koji nisu eksplicitno pomenuti gore:
+Zameni SVE instance malih "vas/vam/vaÅ¡e" sa velikim "Vas/Vam/VaÅ¡e" (formalno obraÄ‡anje)
+Zameni SVE long dash karaktere (em dash, en dash) sa obiÄnom crticom (-)
+Koristi latiniÄne kvaÄice (âœ“) gde god se koriste checkmark ikonice
+Ukloni SVE reference na "10+" i "12+" brojeve sa sajta
+Ukloni self-quote blok (citat koji zavrÅ¡ava sa "- Fluxel")
+Koristi srpska slova sa kvaÄicama (Ä, Ä‡, Å¾, Å¡, Ä‘) u celom tekstu
+REZIME KLJUÄŒNIH PROMENA
+OBRISANO: Self-quote blok ("- Fluxel")
+OBRISANO: "10+ zadovoljnih klijenata" i "12+ zavrÅ¡enih projekata" statistike
+OBRISANO: Zvezdice rating u hero sekciji
+DODATO: Nova sekcija za urgenciju i risk reversal pre kontakt sekcije
+DODATO: "(15 min)" na sve CTA dugmiÄ‡e
+DODATO: Problem-reÅ¡enje format za portfolio kartice
+IZMENJENO: Sva obraÄ‡anja iz "vas" u "Vas" (formalno)
+IZMENJENO: Feature opisi sada ukljuÄuju poslovne ishode, ne samo specifikacije
+IZMENJENO: Sve long dash (-) zamenjene sa obiÄnom crticom (-)
+IZMENJENO: Sva slova koriste srpske kvaÄice (ÄÄ‡Å¾Å¡Ä‘)
+IZMENJENO: Problem kartice imaju oÅ¡triji, konkretniji jezik

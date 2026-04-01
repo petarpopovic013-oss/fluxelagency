@@ -161,19 +161,20 @@ function PhoneMockup() {
   const dates = [null,null,null,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: -10 }}
-      animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }}
-      transition={{ duration: 1.05, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto mt-8 flex w-full max-w-[21rem] items-center justify-center self-stretch px-2 sm:mt-10 sm:max-w-sm lg:mt-0 lg:px-0"
+      initial={{ opacity: 0, y: 120, scale: 0.78, rotateY: -18, rotateZ: 6, filter: "blur(16px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0, rotateZ: 0, filter: "blur(0px)" }}
+      transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      className="relative mx-auto mt-8 flex w-full max-w-[21rem] items-center justify-center self-stretch px-2 sm:mt-10 sm:max-w-sm lg:-translate-y-6 lg:mt-0 lg:px-0"
     >
       {/* Glow rings */}
-      <div className="absolute h-56 w-56 rounded-full bg-cyan-400/15 blur-3xl animate-pulse sm:h-72 sm:w-72" />
-      <div className="absolute h-44 w-44 rounded-full bg-cyan-400/10 blur-2xl animate-[pulse_3s_ease-in-out_infinite_0.5s] sm:h-56 sm:w-56" />
+      <div className="absolute h-56 w-56 rounded-full bg-cyan-400/15 blur-3xl animate-aurora-drift sm:h-72 sm:w-72" />
+      <div className="absolute h-44 w-44 rounded-full bg-cyan-400/10 blur-2xl animate-orbit-slow sm:h-56 sm:w-56" />
+      <div className="absolute h-80 w-80 rounded-full border border-cyan-400/10 animate-orbit-slow opacity-60 [animation-direction:reverse]" />
 
       {/* Phone frame with float animation */}
       <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 6.5, repeat: Infinity, ease: [0.37, 0, 0.63, 1] }}
+        animate={{ y: [0, -18, 0], rotateZ: [0, 1.2, -1.2, 0], scale: [1, 1.018, 1] }}
+        transition={{ duration: 5.2, repeat: Infinity, ease: [0.37, 0, 0.63, 1] }}
         className="relative aspect-[1/2] w-[min(72vw,16rem)] overflow-hidden rounded-[2rem] border border-white/15 bg-[#0d0d0d] shadow-2xl shadow-cyan-400/10 will-change-transform sm:w-[260px] sm:rounded-[38px]"
       >
         {/* Notch */}
@@ -226,7 +227,7 @@ function PhoneMockup() {
           </div>
           {/* Time slots */}
           <div className="px-3 pb-2">
-            <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Termini &mdash; cet 15 jan</p>
+            <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Termini - čet 15 jan</p>
             <div className="flex flex-wrap gap-1">
               {['09:00','10:30','12:00','14:00','15:30'].map((t,i)=>(
                 <span key={t} className={`px-2 py-1 rounded-lg text-[9px] font-medium ${
@@ -240,7 +241,7 @@ function PhoneMockup() {
             <div className="bg-cyan-400 rounded-xl py-2.5 text-center">
               <span className="text-black font-bold text-[11px]">Potvrdi zakazivanje &rarr;</span>
             </div>
-            <p className="text-white/25 text-[8px] text-center mt-1.5">Potvrda stize SMS-om</p>
+            <p className="text-white/25 text-[8px] text-center mt-1.5">Potvrda stiže SMS-om</p>
           </div>
         </div>
         {/* Home indicator */}
@@ -249,9 +250,9 @@ function PhoneMockup() {
 
       {/* Floating notification - animated */}
       <motion.div
-        initial={{ opacity: 0, x: 40, scale: 0.8 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 0.75, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, x: 120, y: 24, scale: 0.6, rotate: 8 }}
+        animate={{ opacity: 1, x: 0, y: [0, -8, 0], scale: 1, rotate: [0, -1.5, 0] }}
+        transition={{ duration: 0.95, delay: 0.95, ease: [0.16, 1, 0.3, 1], y: { duration: 3.4, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 3.4, repeat: Infinity, ease: "easeInOut" } }}
         className="absolute left-1/2 top-10 ml-[3.8rem] max-w-[9.5rem] rounded-2xl border border-white/20 bg-white/10 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:left-auto sm:right-[-1rem] sm:top-12 sm:ml-0 sm:max-w-none sm:px-3"
       >
         <p className="text-white/50 text-[8px]">Nova rezervacija</p>
@@ -261,9 +262,9 @@ function PhoneMockup() {
 
       {/* Second floating element - bottom left */}
       <motion.div
-        initial={{ opacity: 0, x: -40, scale: 0.8 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 0.75, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, x: -120, y: 28, scale: 0.6, rotate: -8 }}
+        animate={{ opacity: 1, x: 0, y: [0, 10, 0], scale: 1, rotate: [0, 1.8, 0] }}
+        transition={{ duration: 0.95, delay: 1.05, ease: [0.16, 1, 0.3, 1], y: { duration: 3.8, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 3.8, repeat: Infinity, ease: "easeInOut" } }}
         className="absolute bottom-14 right-1/2 mr-[3.8rem] rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:bottom-20 sm:left-[-2rem] sm:right-auto sm:mr-0 sm:px-3"
       >
         <p className="text-emerald-400 text-[8px] font-semibold">+23% vise termina</p>
@@ -285,6 +286,8 @@ export default function EtherealBeamsHero() {
       {/* Gradient overlays */}
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent z-0" />
+      <div className="absolute left-[-10%] top-[8%] z-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl animate-aurora-drift" />
+      <div className="absolute right-[-8%] top-[18%] z-0 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl animate-aurora-drift [animation-delay:-4s]" />
 
       {/* Content */}
       <div className="relative z-10 flex min-h-[100svh] items-center pt-24 pb-14 sm:pb-16">
@@ -295,17 +298,17 @@ export default function EtherealBeamsHero() {
             <div className="flex-1 text-center lg:text-left">
               {/* Headline - staggered word reveal */}
               <motion.h1
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.95, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 84, scale: 0.92, rotateX: -14, filter: "blur(12px)" }}
+                animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: "blur(0px)" }}
+                transition={{ duration: 1.05, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="mb-5 text-[clamp(2.5rem,10vw,5.5rem)] font-black leading-[1.02] tracking-tight text-white sm:mb-6"
               >
                 Koliko klijenata ste<br />
                 izgubili danas jer{" "}
                 <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, y: 36, scale: 0.92, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 0.95, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent animate-gradient-x"
                 >
                   nisu mogli da<br className="hidden sm:block" /> zakažu online?
@@ -314,28 +317,27 @@ export default function EtherealBeamsHero() {
 
               {/* Subheadline */}
               <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 50, scale: 0.96, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.95, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
                 className="mx-auto mb-8 max-w-xl text-base leading-7 text-white/70 sm:mb-10 sm:text-lg sm:leading-8 lg:mx-0 lg:text-xl"
               >
-                Pravimo sistem za online zakazivanje i profesionalni web sajt koji radi za vas
-                <strong className="text-white"> 24/7</strong> - čak i dok spavate.
+                Pravimo sisteme za zakazivanje koji rade umesto Vas - 24/7. Bez Viber haosa, bez propuštenih termina, bez ručnog podsećanja.
               </motion.p>
 
               {/* CTA */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.95, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
                 className="mb-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 lg:justify-start"
               >
                 <a
                   href="#kontakt"
-                  className="group relative inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black shadow-lg shadow-cyan-400/25 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-cyan-400/40 sm:min-h-14 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
+                  className="group relative inline-flex min-h-12 w-full animate-warp-pulse items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black shadow-lg shadow-cyan-400/25 transition-all duration-300 hover:scale-110 hover:bg-cyan-300 hover:shadow-[0_0_60px_rgba(34,211,238,0.55)] sm:min-h-14 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
                 >
                   <span className="absolute inset-0 rounded-full bg-cyan-400/30 blur-xl group-hover:blur-2xl transition-all duration-300 -z-10" />
-                  Zakažite besplatan razgovor
+                  Zakažite besplatan razgovor (15 min)
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </a>
                 <a
@@ -348,27 +350,12 @@ export default function EtherealBeamsHero() {
 
               {/* Social proof */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col items-center gap-3 text-sm text-white/50 sm:flex-row sm:gap-4 lg:items-start"
+                initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.85, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm font-medium text-white/70"
               >
-                <div className="flex flex-wrap items-center justify-center gap-1.5 lg:justify-start">
-                  {[...Array(5)].map((_,i)=>(
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.66 + i * 0.08, duration: 0.36, ease: "backOut" }}
-                      className="text-cyan-400 text-base"
-                    >
-                      ★
-                    </motion.span>
-                  ))}
-                  <span className="ml-1 text-center font-medium text-white/70">10+ zadovoljnih klijenata</span>
-                </div>
-                <span className="hidden sm:block text-white/20">&middot;</span>
-                <span>Dostupni 7 dana u nedelji</span>
+                Specijalizovani isključivo za servisne biznise u Srbiji
               </motion.div>
             </div>
 
