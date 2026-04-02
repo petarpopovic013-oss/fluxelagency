@@ -197,18 +197,15 @@ function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <MagneticWrap>
-            <motion.a
-              href="#kontakt"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(34,211,238,0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden min-h-11 items-center gap-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-bold text-black transition-colors hover:bg-cyan-300 md:inline-flex"
-            >
-              Besplatan razgovor (15 min)
-              <ArrowRight className="w-4 h-4" />
-            </motion.a>
-          </MagneticWrap>
+          {/* Desktop CTA — replaced by FloatingCTA */}
+          <motion.a
+            href="#kontakt"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden items-center gap-1.5 text-sm font-semibold text-cyan-400 transition-colors hover:text-cyan-300 md:inline-flex"
+          >
+            Kontakt <ArrowRight className="w-3.5 h-3.5" />
+          </motion.a>
 
           {/* Mobile toggle */}
           <button onClick={() => setOpen(o => !o)} aria-label="Menu"
@@ -248,9 +245,9 @@ function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.22, duration: 0.45, ease: naturalEase }}
-                className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-5 py-3.5 text-base font-bold text-black transition-all"
+                className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-cyan-400/30 px-5 py-3.5 text-base font-semibold text-cyan-400 transition-all hover:bg-cyan-400/10"
               >
-                Besplatan razgovor (15 min) <ArrowRight className="w-4 h-4" />
+                Kontakt <ArrowRight className="w-4 h-4" />
               </motion.a>
             </div>
           </motion.div>
@@ -574,20 +571,7 @@ function HowItWorksSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-10 text-center sm:mt-14">
-          <MagneticWrap className="inline-block">
-            <motion.a
-              href="#kontakt"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              className="relative inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
-            >
-              <span className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl -z-10" />
-              Zakažite besplatan razgovor (15 min)
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
-          </MagneticWrap>
-        </FadeIn>
+        {/* CTA removed — handled by FloatingCTA */}
       </div>
     </section>
   )
@@ -844,19 +828,9 @@ function PricingHintSection() {
               <p className="mb-2 text-sm leading-6 text-white/70 sm:text-base">
                 Cena zavisi od Vaših specifičnih potreba i veličine biznisa.
               </p>
-              <p className="mb-5 text-base font-semibold leading-7 text-white sm:mb-6 sm:text-lg">
+              <p className="text-base font-semibold leading-7 text-white sm:text-lg">
                 Javite nam se za <span className="text-cyan-400 font-bold">besplatnu procenu</span> - bez obaveza.
               </p>
-              <MagneticWrap className="inline-block">
-                <motion.a
-                  href="#kontakt"
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.3)" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
-                >
-                  Zakažite besplatan razgovor (15 min) &rarr;
-                </motion.a>
-              </MagneticWrap>
             </div>
           </div>
         </ScaleIn>
@@ -883,17 +857,7 @@ function UrgencySection() {
             <p className="mb-6 text-sm leading-7 text-white/70 sm:text-base">
               Ako posle prvog razgovora odlučite da ovo nije za Vas - nema problema. Nema obaveza, nema pritiska. Ali barem ćete znati tačno šta je moguće za Vaš biznis.
             </p>
-            <MagneticWrap className="inline-block">
-              <motion.a
-                href="#kontakt"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black transition-colors sm:min-h-14 sm:w-auto sm:px-8 sm:py-4"
-              >
-                Zakažite besplatan razgovor (15 min)
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
-            </MagneticWrap>
+            {/* CTA removed — handled by FloatingCTA */}
           </div>
         </FadeIn>
       </div>
@@ -1212,13 +1176,7 @@ function Footer() {
               <li className="flex items-start gap-2.5 break-all sm:break-normal"><Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />fluxel@outlook.com</li>
               <li className="flex items-start gap-2.5"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />Novi Sad, Srbija</li>
             </ul>
-            <motion.a
-              href="#kontakt"
-              whileHover={{ x: 5 }}
-              className="mt-5 inline-flex items-center gap-2 text-cyan-400 text-sm font-semibold hover:text-cyan-300 transition-colors"
-            >
-              Besplatan razgovor (15 min) <ChevronRight className="w-4 h-4" />
-            </motion.a>
+            {/* CTA removed — handled by FloatingCTA */}
           </FadeIn>
         </div>
 
@@ -1235,6 +1193,78 @@ function Footer() {
         </div>
       </div>
     </footer>
+  )
+}
+
+// ─── Floating CTA ────────────────────────────────────────────────────────────
+
+function FloatingCTA() {
+  const [pastFold, setPastFold] = useState(false)
+  const [hideForContact, setHideForContact] = useState(false)
+
+  useEffect(() => {
+    let ticking = false
+
+    const update = () => {
+      setPastFold(window.scrollY > window.innerHeight * 0.5)
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
+
+    // Intersection observer: hide when contact section is visible
+    const kontakt = document.getElementById("kontakt")
+    let observer: IntersectionObserver | null = null
+    if (kontakt) {
+      observer = new IntersectionObserver(
+        ([entry]) => setHideForContact(entry.isIntersecting),
+        { threshold: 0.1 }
+      )
+      observer.observe(kontakt)
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      observer?.disconnect()
+    }
+  }, [])
+
+  const show = pastFold && !hideForContact
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none"
+        >
+          <div className="pointer-events-auto mx-auto w-full max-w-md px-4 pb-7 sm:pb-8">
+            <MagneticWrap>
+              <motion.a
+                href="#kontakt"
+                whileHover={{ scale: 1.03, boxShadow: "0 0 50px rgba(34,211,238,0.35)" }}
+                whileTap={{ scale: 0.97 }}
+                aria-label="Zakažite besplatan razgovor"
+                className="relative flex min-h-14 w-full transform-gpu items-center justify-center gap-2.5 rounded-full bg-cyan-400 px-5 py-4 text-base font-bold text-black shadow-[0_4px_24px_rgba(34,211,238,0.3)] transition-colors will-change-transform hover:bg-cyan-300 sm:min-h-[3.75rem] sm:px-6 sm:py-[1.125rem] sm:text-lg"
+              >
+                <span className="absolute inset-0 -z-10 rounded-full bg-cyan-400/20 blur-xl will-change-transform motion-safe:animate-floating-cta-pulse motion-reduce:animate-none" />
+                Zakažite besplatan razgovor
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+            </MagneticWrap>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 
@@ -1301,6 +1331,7 @@ export default function Home() {
     <MotionConfig reducedMotion="user" transition={{ duration: 0.6, ease: naturalEase }}>
       <main className="overflow-x-clip bg-black">
         <Navbar />
+        <FloatingCTA />
         <EtherealBeamsHero />
         <SectionDivider />
         <PainSection />

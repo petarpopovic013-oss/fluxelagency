@@ -325,7 +325,7 @@ export default function EtherealBeamsHero() {
                 Pravimo sisteme za zakazivanje koji rade umesto Vas - 24/7. Bez Viber haosa, bez propuštenih termina, bez ručnog podsećanja.
               </motion.p>
 
-              {/* CTA */}
+              {/* Secondary nav — primary CTA handled by FloatingCTA */}
               <motion.div
                 initial={{ opacity: 0, y: 60, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -333,18 +333,11 @@ export default function EtherealBeamsHero() {
                 className="mb-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 lg:justify-start"
               >
                 <a
-                  href="#kontakt"
-                  className="group relative inline-flex min-h-12 w-full animate-warp-pulse items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-base font-bold text-black shadow-lg shadow-cyan-400/25 transition-all duration-300 hover:scale-110 hover:bg-cyan-300 hover:shadow-[0_0_60px_rgba(34,211,238,0.55)] sm:min-h-14 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
-                >
-                  <span className="absolute inset-0 rounded-full bg-cyan-400/30 blur-xl group-hover:blur-2xl transition-all duration-300 -z-10" />
-                  Zakažite besplatan razgovor (15 min)
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
-                </a>
-                <a
                   href="#resenje"
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-base font-medium text-white/80 transition-all duration-300 backdrop-blur-sm hover:border-white/40 hover:bg-white/5 hover:text-white sm:min-h-14 sm:w-auto sm:py-4"
                 >
                   Pogledaj kako funkcioniše
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </motion.div>
 

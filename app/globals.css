@@ -95,6 +95,7 @@
   --animate-aurora-drift: aurora-drift 12s ease-in-out infinite;
   --animate-orbit-slow: orbit-slow 18s linear infinite;
   --animate-warp-pulse: warp-pulse 4.8s ease-in-out infinite;
+  --animate-floating-cta-pulse: floating-cta-pulse 3.6s ease-in-out infinite;
 }
 
 @keyframes gradient-x {
@@ -137,6 +138,17 @@
 @keyframes warp-pulse {
   0%, 100% { transform: scale(1); filter: saturate(1); }
   50% { transform: scale(1.02); filter: saturate(1.12); }
+}
+
+@keyframes floating-cta-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.38;
+    transform: scale(1.08);
+  }
 }
 
 body {

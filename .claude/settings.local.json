@@ -18,7 +18,9 @@
       "mcp__playwright__playwright_screenshot",
       "Bash(mkdir -p screenshots)",
       "Bash(npx playwright:*)",
-      "Bash(node -e \":*)"
+      "Bash(node -e \":*)",
+      "Bash(/tmp/fluxel_cta_report.txt:*)",
+      "Read(//tmp/**)"
     ]
   },
   "enabledMcpjsonServers": [
