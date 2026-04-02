@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import type React from "react"
 import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, type FC, type ReactNode } from "react"
@@ -9,7 +9,7 @@ import { degToRad } from "three/src/math/MathUtils.js"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 
-// ── Beams 3D background ───────────────────────────────────────────────────────
+// â”€â”€ Beams 3D background â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 type UniformValue = THREE.IUniform<unknown> | unknown
 interface ExtendMaterialConfig {
@@ -155,7 +155,7 @@ vec3 getNormal(vec3 pos){vec3 curpos=getCurrentPos(pos);vec3 nextposX=getCurrent
   )
 }
 
-// ── Phone mockup ──────────────────────────────────────────────────────────────
+// â”€â”€ Phone mockup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function PhoneMockup() {
   const dates = [null,null,null,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
@@ -185,15 +185,15 @@ function PhoneMockup() {
         <div className="absolute inset-0 top-6 bg-[#111] flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-black/60 px-4 pt-2 pb-2.5 border-b border-white/5">
-            <p className="text-white/40 text-[9px] tracking-widest uppercase">Frizerski salon Ana</p>
-            <p className="text-white font-bold text-[13px]">Zakazi termin</p>
+            <p className="text-white/40 text-[9px] tracking-widest uppercase">Frizerski salon Äina</p>
+            <p className="text-white font-bold text-[13px]">ZakaÅ¾i termin</p>
           </div>
           {/* Service */}
           <div className="px-3 pt-3 pb-2">
             <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Usluga</p>
             <div className="space-y-1">
               <div className="bg-cyan-400/15 border border-cyan-400/40 rounded-lg px-2.5 py-1.5 flex justify-between items-center">
-                <span className="text-white text-[10px] font-medium">Zensko sisanje</span>
+                <span className="text-white text-[10px] font-medium">Å½ensko Å¡iÅ¡anje</span>
                 <span className="text-cyan-400 text-[9px]">45 min &middot; 2500 RSD</span>
               </div>
               {[["Bojenje kose","90 min"],["Feniranje","30 min"]].map(([s,t])=>(
@@ -227,7 +227,7 @@ function PhoneMockup() {
           </div>
           {/* Time slots */}
           <div className="px-3 pb-2">
-            <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Termini - čet 15 jan</p>
+            <p className="text-white/40 text-[8px] uppercase tracking-wider mb-1.5">Termini - čet 15. jan</p>
             <div className="flex flex-wrap gap-1">
               {['09:00','10:30','12:00','14:00','15:30'].map((t,i)=>(
                 <span key={t} className={`px-2 py-1 rounded-lg text-[9px] font-medium ${
@@ -241,7 +241,7 @@ function PhoneMockup() {
             <div className="bg-cyan-400 rounded-xl py-2.5 text-center">
               <span className="text-black font-bold text-[11px]">Potvrdi zakazivanje &rarr;</span>
             </div>
-            <p className="text-white/25 text-[8px] text-center mt-1.5">Potvrda stiže SMS-om</p>
+            <p className="text-white/25 text-[8px] text-center mt-1.5">Potvrda stiÅ¾e SMS-om</p>
           </div>
         </div>
         {/* Home indicator */}
@@ -267,14 +267,14 @@ function PhoneMockup() {
         transition={{ duration: 0.95, delay: 1.05, ease: [0.16, 1, 0.3, 1], y: { duration: 3.8, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 3.8, repeat: Infinity, ease: "easeInOut" } }}
         className="absolute bottom-[-0.5rem] left-3 rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:bottom-20 sm:left-[-2rem] sm:px-3"
       >
-        <p className="text-emerald-400 text-[8px] font-semibold">+23% vise termina</p>
+        <p className="text-emerald-400 text-[8px] font-semibold">+23% viÅ¡e termina</p>
         <p className="text-white/50 text-[8px]">ovog meseca</p>
       </motion.div>
     </motion.div>
   )
 }
 
-// ── Hero component ────────────────────────────────────────────────────────────
+// â”€â”€ Hero component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function EtherealBeamsHero() {
   return (
@@ -311,7 +311,7 @@ export default function EtherealBeamsHero() {
                   transition={{ duration: 0.95, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent animate-gradient-x"
                 >
-                  nisu mogli da<br className="hidden sm:block" /> zakažu online?
+                  nisu mogli da<br className="hidden sm:block" /> zakaÅ¾u online?
                 </motion.span>
               </motion.h1>
 
@@ -322,10 +322,10 @@ export default function EtherealBeamsHero() {
                 transition={{ duration: 0.95, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
                 className="mx-auto mb-8 max-w-xl text-base leading-7 text-white/70 sm:mb-10 sm:text-lg sm:leading-8 lg:mx-0 lg:text-xl"
               >
-                Pravimo sisteme za zakazivanje koji rade umesto Vas - 24/7. Bez Viber haosa, bez propuštenih termina, bez ručnog podsećanja.
+                Pravimo sisteme za zakazivanje koji rade umesto Vas - 24/7. Bez Viber haosa, bez propuÅ¡tenih termina, bez ruÄnog podseÄ‡anja.
               </motion.p>
 
-              {/* Secondary nav — primary CTA handled by FloatingCTA */}
+              {/* Secondary nav â€” primary CTA handled by FloatingCTA */}
               <motion.div
                 initial={{ opacity: 0, y: 60, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -336,7 +336,7 @@ export default function EtherealBeamsHero() {
                   href="#resenje"
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-base font-medium text-white/80 transition-all duration-300 backdrop-blur-sm hover:border-white/40 hover:bg-white/5 hover:text-white sm:min-h-14 sm:w-auto sm:py-4"
                 >
-                  Pogledaj kako funkcioniše
+                  Pogledaj kako funkcioniÅ¡e
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </motion.div>
@@ -348,7 +348,7 @@ export default function EtherealBeamsHero() {
                 transition={{ duration: 0.85, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
                 className="text-sm font-medium text-white/70"
               >
-                Specijalizovani isključivo za servisne biznise u Srbiji
+                Specijalizovani iskljuÄivo za servisne biznise u Srbiji
               </motion.div>
             </div>
 
@@ -361,3 +361,4 @@ export default function EtherealBeamsHero() {
     </section>
   )
 }
+

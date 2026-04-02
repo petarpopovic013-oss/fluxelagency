@@ -866,10 +866,51 @@ const bizTypes = [
 function ContactSection() {
   const [form, setForm] = useState({ name:"", phone:"", biz:"", msg:"" })
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    setSent(true)
+    setSubmitError("")
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey) {
+      setSubmitError("Došlo je do greške. Pokušajte ponovo uskoro.")
+      return
+    }
+
+    const formData = new FormData()
+    formData.append("access_key", accessKey)
+    formData.append("subject", "Nova prijava sa fluxel.rs")
+    formData.append("from_name", "Fluxel sajt")
+    formData.append("name", form.name)
+    formData.append("phone", form.phone)
+    formData.append("biz_type", form.biz)
+    formData.append("message", form.msg || "Nije ostavljena dodatna poruka.")
+    formData.append("botcheck", "")
+
+    setSubmitting(true)
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        setSubmitError(result.message || "Došlo je do greške pri slanju poruke.")
+        return
+      }
+
+      setSent(true)
+      setForm({ name:"", phone:"", biz:"", msg:"" })
+    } catch {
+      setSubmitError("Došlo je do greške pri slanju poruke. Pokušajte ponovo.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const inputCls = "w-full rounded-xl border border-white/[0.15] bg-white/5 px-4 py-3.5 text-base text-white placeholder-white/25 transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/8 focus:shadow-lg focus:shadow-cyan-400/5 focus:outline-none"
@@ -1062,9 +1103,10 @@ function ContactSection() {
                       <MagneticWrap>
                         <motion.button
                           type="submit"
+                          disabled={submitting}
                           whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(34,211,238,0.2)" }}
                           whileTap={{ scale: 0.98 }}
-                          className="relative mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 py-4 text-base font-bold text-black transition-colors sm:min-h-14"
+                          className="relative mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 py-4 text-base font-bold text-black transition-colors disabled:cursor-not-allowed disabled:opacity-70 sm:min-h-14"
                         >
                           <span className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl -z-10" />
                           Zakažite besplatan razgovor (15 min)
@@ -1072,6 +1114,10 @@ function ContactSection() {
                         </motion.button>
                       </MagneticWrap>
                     </motion.div>
+
+                    {submitError ? (
+                      <p className="text-center text-sm text-red-400">{submitError}</p>
+                    ) : null}
 
                     <p className="text-white/45 text-xs text-center">
                       Vaši podaci su bezbedni. Bez spam poruka. Odgovaramo u roku od 24 sata.
