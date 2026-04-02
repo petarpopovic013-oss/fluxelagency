@@ -27,16 +27,6 @@ const IconInstagram = ({ className = "w-4 h-4" }: SI) => (
     <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
   </svg>
 )
-const IconLinkedin = ({ className = "w-4 h-4" }: SI) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-  </svg>
-)
-const IconX = ({ className = "w-4 h-4" }: SI) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-)
 
 // ─── Animation helpers ────────────────────────────────────────────────────────
 
@@ -152,7 +142,7 @@ function Navbar() {
 
   const links = [
     { label: "Problem", href: "#problem" },
-    { label: "Resenje", href: "#resenje" },
+    { label: "Rešenje", href: "#resenje" },
     { label: "Radovi", href: "#radovi" },
     { label: "O nama", href: "#o-nama" },
   ]
@@ -916,7 +906,7 @@ function ContactSection() {
 
               {[
                 { icon: Phone, label: "Telefon / Viber", value: "+381 61 16 05 707" },
-                { icon: Mail,  label: "Email", value: "fluxel@outlook.com" },
+                { icon: Mail,  label: "Email", value: "info@fluxel.rs" },
                 { icon: MapPin, label: "Lokacija", value: "Novi Sad, Srbija" },
               ].map(({ icon: Icon, label, value }, i) => (
                 <motion.div
@@ -942,25 +932,21 @@ function ContactSection() {
               ))}
 
               <div className="flex flex-wrap gap-3 pt-1 sm:pt-2">
-                {([
-                  [IconInstagram, "Instagram"],
-                  [IconLinkedin, "LinkedIn"],
-                  [IconX, "X"],
-                ] as [typeof IconInstagram, string][]).map(([Icon, label], i) => (
-                  <motion.button
-                    key={label}
-                    aria-label={label}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.1, duration: 0.4, ease: "backOut" }}
-                    whileHover={{ scale: 1.15, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.15] bg-white/5 text-white/75 transition-all cursor-pointer hover:border-cyan-400/30 hover:bg-white/10 hover:text-cyan-400"
-                  >
-                    <Icon />
-                  </motion.button>
-                ))}
+                <motion.a
+                  href="https://www.instagram.com/fluxel.rs/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.4, ease: "backOut" }}
+                  whileHover={{ scale: 1.15, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.15] bg-white/5 text-white/75 transition-all cursor-pointer hover:border-cyan-400/30 hover:bg-white/10 hover:text-cyan-400"
+                >
+                  <IconInstagram />
+                </motion.a>
               </div>
 
               {/* Trust bar */}
@@ -1104,21 +1090,12 @@ function ContactSection() {
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
 function Footer() {
-  const navLinks = [
-    { label: "Problem", href: "#problem" },
-    { label: "Resenje", href: "#resenje" },
-    { label: "Proces", href: "#proces" },
-    { label: "Radovi", href: "#radovi" },
-    { label: "O nama", href: "#o-nama" },
-    { label: "Kontakt", href: "#kontakt" },
-  ]
-
   return (
     <footer className="bg-black border-t border-white/[0.15] py-14 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
 
       <div className={containerShell}>
-        <div className="mb-10 grid grid-cols-1 gap-8 sm:gap-10 md:mb-12 md:grid-cols-3">
+        <div className="mb-10 grid grid-cols-1 gap-8 sm:gap-10 md:mb-12 md:grid-cols-2">
           {/* Brand */}
           <FadeIn>
             <motion.a
@@ -1131,49 +1108,27 @@ function Footer() {
             <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
               Sistemi za zakazivanje i automatizaciju za servisne biznise u Srbiji.
             </p>
-            <div className="flex gap-3 mt-5">
-              {([
-                [IconInstagram, "Instagram"],
-                [IconLinkedin, "LinkedIn"],
-                [IconX, "X"],
-              ] as [typeof IconInstagram, string][]).map(([Icon, label]) => (
-                <motion.button
-                  key={label}
-                  aria-label={label}
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.15] bg-white/5 text-white/65 transition-all cursor-pointer hover:border-cyan-400/30 hover:text-cyan-400"
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                </motion.button>
-              ))}
+            <div className="mt-5 flex gap-3">
+              <motion.a
+                href="https://www.instagram.com/fluxel.rs/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.15] bg-white/5 text-white/65 transition-all cursor-pointer hover:border-cyan-400/30 hover:text-cyan-400"
+              >
+                <IconInstagram className="h-3.5 w-3.5" />
+              </motion.a>
             </div>
           </FadeIn>
 
-          {/* Nav */}
-          <FadeIn delay={0.1}>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Navigacija</h4>
-            <ul className="space-y-2.5">
-              {navLinks.map((l, i) => (
-                <motion.li
-                  key={l.href}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                >
-                  <a href={l.href} className="text-white/60 text-sm hover:text-cyan-400 hover:pl-1 transition-all duration-300">{l.label}</a>
-                </motion.li>
-              ))}
-            </ul>
-          </FadeIn>
-
           {/* Contact */}
-          <FadeIn delay={0.2}>
+          <FadeIn delay={0.1}>
             <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kontakt</h4>
             <ul className="space-y-2.5 text-sm text-white/60">
               <li className="flex items-start gap-2.5"><Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />+381 61 16 05 707</li>
-              <li className="flex items-start gap-2.5 break-all sm:break-normal"><Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />fluxel@outlook.com</li>
+              <li className="flex items-start gap-2.5 break-all sm:break-normal"><Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />info@fluxel.rs</li>
               <li className="flex items-start gap-2.5"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />Novi Sad, Srbija</li>
             </ul>
             {/* CTA removed — handled by FloatingCTA */}

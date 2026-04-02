@@ -265,7 +265,7 @@ function PhoneMockup() {
         initial={{ opacity: 0, x: -120, y: 28, scale: 0.6, rotate: -8 }}
         animate={{ opacity: 1, x: 0, y: [0, 10, 0], scale: 1, rotate: [0, 1.8, 0] }}
         transition={{ duration: 0.95, delay: 1.05, ease: [0.16, 1, 0.3, 1], y: { duration: 3.8, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 3.8, repeat: Infinity, ease: "easeInOut" } }}
-        className="absolute bottom-14 right-1/2 mr-[3.8rem] rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:bottom-20 sm:left-[-2rem] sm:right-auto sm:mr-0 sm:px-3"
+        className="absolute bottom-[-0.5rem] left-3 rounded-2xl border border-emerald-500/25 bg-emerald-500/15 px-2.5 py-2 shadow-xl backdrop-blur-xl will-change-transform sm:bottom-20 sm:left-[-2rem] sm:px-3"
       >
         <p className="text-emerald-400 text-[8px] font-semibold">+23% vise termina</p>
         <p className="text-white/50 text-[8px]">ovog meseca</p>
