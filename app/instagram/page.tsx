@@ -3,24 +3,19 @@
 import { useState, useRef, useCallback } from "react"
 import { domToJpeg } from "modern-screenshot"
 import { Download } from "lucide-react"
-import { Archivo, Space_Grotesk } from "next/font/google"
 import {
   Calendar, Bell, Zap, Layout, Globe, Clock,
   Check, ArrowRight, Sparkles, ChevronLeft, ChevronRight,
   Lightbulb, TrendingUp, AlertTriangle, BookOpen, MessageCircle,
 } from "lucide-react"
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-})
+const archivo = {
+  className: "[font-family:var(--font-heading)]",
+}
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-})
+const spaceGrotesk = {
+  className: "[font-family:var(--font-body)]",
+}
 
 // ─── Post 1: "Did You Know?" fact post ──────────────────────────────────────
 
@@ -503,7 +498,13 @@ function Post5() {
 
 // ─── Gallery page ───────────────────────────────────────────────────────────
 
-
+const posts = [
+  { id: "post-1", label: "Did you know", component: Post1 },
+  { id: "post-2", label: "3 tips", component: Post2 },
+  { id: "post-3", label: "Problem to solution", component: Post3 },
+  { id: "post-4", label: "Step by step process", component: Post4 },
+  { id: "post-5", label: "Quote insight", component: Post5 },
+] as const
 
 export default function InstagramTemplates() {
   const [downloading, setDownloading] = useState<number | null>(null)
