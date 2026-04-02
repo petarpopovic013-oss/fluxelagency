@@ -1228,34 +1228,6 @@ function FloatingCTA() {
 export default function Home() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    let frame = 0
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-
-    const smoothScrollTo = (targetY: number) => {
-      if (reduceMotion.matches) {
-        window.scrollTo(0, targetY)
-        return
-      }
-
-      cancelAnimationFrame(frame)
-      const startY = window.scrollY
-      const distance = targetY - startY
-      const duration = Math.min(1200, Math.max(520, Math.abs(distance) * 0.55))
-      const start = performance.now()
-
-      const tick = (now: number) => {
-        const progress = Math.min((now - start) / duration, 1)
-        const eased = easeInOutCubic(progress)
-        window.scrollTo(0, startY + distance * eased)
-        if (progress < 1) {
-          frame = requestAnimationFrame(tick)
-        }
-      }
-
-      frame = requestAnimationFrame(tick)
-    }
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null
@@ -1271,13 +1243,15 @@ export default function Home() {
       const headerOffset = window.innerWidth < 768 ? 88 : 96
       const rect = element.getBoundingClientRect()
       const targetY = Math.max(0, rect.top + window.scrollY - headerOffset)
-      smoothScrollTo(targetY)
+      window.scrollTo({
+        top: targetY,
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+      })
       history.replaceState(null, "", href)
     }
 
     document.addEventListener("click", onClick)
     return () => {
-      cancelAnimationFrame(frame)
       document.removeEventListener("click", onClick)
     }
   }, [])
