@@ -1202,7 +1202,7 @@ function FloatingCTA() {
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none"
         >
-          <div className="pointer-events-auto mx-auto w-full max-w-md px-4 pb-7 sm:pb-8">
+          <div className="pointer-events-auto mx-auto w-full max-w-md px-4 pb-10 sm:pb-12">
             <MagneticWrap>
               <motion.a
                 href="#kontakt"
