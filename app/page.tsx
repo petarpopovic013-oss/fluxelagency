@@ -24,7 +24,7 @@ const naturalEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
 type SI = { className?: string }
 const IconInstagram = ({ className = "w-4 h-4" }: SI) => (
   <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    <rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
   </svg>
 )
 
@@ -154,9 +154,8 @@ function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.9, ease: naturalEase }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/[0.15] shadow-lg shadow-black/20" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/[0.15] shadow-lg shadow-black/20" : "bg-transparent"
+        }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-18 items-center justify-between sm:h-20">
@@ -408,10 +407,10 @@ const systemParts = [
 ]
 
 const colorMap: Record<string, { icon: string; glow: string }> = {
-  cyan:   { icon: "bg-cyan-400/10 border-cyan-400/20 text-cyan-400", glow: "group-hover:shadow-cyan-400/20" },
-  blue:   { icon: "bg-blue-500/10 border-blue-500/20 text-blue-400", glow: "group-hover:shadow-blue-400/20" },
+  cyan: { icon: "bg-cyan-400/10 border-cyan-400/20 text-cyan-400", glow: "group-hover:shadow-cyan-400/20" },
+  blue: { icon: "bg-blue-500/10 border-blue-500/20 text-blue-400", glow: "group-hover:shadow-blue-400/20" },
   violet: { icon: "bg-violet-500/10 border-violet-500/20 text-violet-400", glow: "group-hover:shadow-violet-400/20" },
-  amber:  { icon: "bg-amber-500/10 border-amber-500/20 text-amber-400", glow: "group-hover:shadow-amber-400/20" },
+  amber: { icon: "bg-amber-500/10 border-amber-500/20 text-amber-400", glow: "group-hover:shadow-amber-400/20" },
 }
 
 function SolutionSection() {
@@ -606,14 +605,14 @@ const projects: Project[] = [
   },
   {
     type: "Rent-a-car",
-    title: "AutoRent BG - Sistem za rezervacije",
-    desc: "Aplikacija za rezervacije vozila sa kalendarom dostupnosti, automatskim ugovorima i online uplatom depozita.",
-    tags: ["Rezervacije vozila", "Automatski ugovori", "Online plaćanje"],
+    title: "BG Rent A Car & Limo Service - Sistem za rezervacije",
+    desc: "Aplikacija za rezervacije vozila sa kalendarom dostupnosti, email notifikacijama i admin panelom za laku upotrebu vlasnika biznisa.",
+    tags: ["Rezervacije vozila", "Email podsećanja", "Admin Panel"],
     gradient: "from-blue-900/60 to-cyan-900/40",
     letter: "R",
-    testimonial: { quote: "Uštedeli smo minimum 2 sata dnevno na administraciji.", name: "Nikola M., vlasnik" },
-    image: null,
-    link: null,
+    testimonial: { quote: "Profesionalna saradnja i odlični rezultati, sve preporuke!", name: "Peđa D., vlasnik BG Rent A Car-a" },
+    image: "/bgrc.png",
+    link: "https://bg-rentacar.vercel.app"
   },
 ]
 
@@ -664,7 +663,7 @@ function PortfolioSection() {
                       <div className="text-center">
                         <div className="text-7xl font-black text-white/10 leading-none">{letter}</div>
                         <div className="mt-2 inline-flex max-w-[12rem] flex-wrap justify-center gap-1">
-                          {tags.slice(0,2).map(t=>(
+                          {tags.slice(0, 2).map(t => (
                             <span key={t} className="text-[9px] bg-white/10 text-white/65 px-2 py-0.5 rounded-full">{t}</span>
                           ))}
                         </div>
@@ -675,7 +674,7 @@ function PortfolioSection() {
                   {/* Browser chrome */}
                   <div className="absolute left-3 right-3 top-3 flex h-7 items-center gap-2 rounded-lg bg-black/40 px-3 backdrop-blur">
                     <div className="flex gap-1.5">
-                      {[...Array(3)].map((_,j)=><div key={j} className="w-2 h-2 rounded-full bg-white/20" />)}
+                      {[...Array(3)].map((_, j) => <div key={j} className="w-2 h-2 rounded-full bg-white/20" />)}
                     </div>
                     <div className="flex-1 h-3 bg-white/10 rounded-sm mx-4" />
                     {link && (
@@ -857,14 +856,14 @@ function UrgencySection() {
 // ─── 8. Contact ───────────────────────────────────────────────────────────────
 
 const bizTypes = [
-  "Frizerski salon","Kozmetički salon","Stomatološka ordinacija",
-  "Auto škola","Škola stranih jezika","Rent-a-car",
-  "Terapeut / Savetnik","Fitnes studio","Spa / Wellness",
+  "Frizerski salon", "Kozmetički salon", "Stomatološka ordinacija",
+  "Auto škola", "Škola stranih jezika", "Rent-a-car",
+  "Terapeut / Savetnik", "Fitnes studio", "Spa / Wellness",
   "Drugo",
 ]
 
 function ContactSection() {
-  const [form, setForm] = useState({ name:"", phone:"", biz:"", msg:"" })
+  const [form, setForm] = useState({ name: "", phone: "", biz: "", msg: "" })
   const [sent, setSent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
@@ -905,7 +904,7 @@ function ContactSection() {
       }
 
       setSent(true)
-      setForm({ name:"", phone:"", biz:"", msg:"" })
+      setForm({ name: "", phone: "", biz: "", msg: "" })
     } catch {
       setSubmitError("Došlo je do greške pri slanju poruke. Pokušajte ponovo.")
     } finally {
@@ -947,7 +946,7 @@ function ContactSection() {
 
               {[
                 { icon: Phone, label: "Telefon / Viber", value: "+381 61 16 05 707" },
-                { icon: Mail,  label: "Email", value: "info@fluxel.rs" },
+                { icon: Mail, label: "Email", value: "info@fluxel.rs" },
                 { icon: MapPin, label: "Lokacija", value: "Novi Sad, Srbija" },
               ].map(({ icon: Icon, label, value }, i) => (
                 <motion.div
@@ -1063,7 +1062,7 @@ function ContactSection() {
                       >
                         <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">{label}</label>
                         <input type={type} required placeholder={placeholder}
-                          value={form[field]} onChange={e => setForm({...form, [field]: e.target.value})}
+                          value={form[field]} onChange={e => setForm({ ...form, [field]: e.target.value })}
                           className={inputCls} />
                       </motion.div>
                     ))}
@@ -1075,7 +1074,7 @@ function ContactSection() {
                       transition={{ delay: 0.16, duration: 0.5 }}
                     >
                       <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">Vrsta biznisa *</label>
-                      <select required value={form.biz} onChange={e => setForm({...form, biz: e.target.value})}
+                      <select required value={form.biz} onChange={e => setForm({ ...form, biz: e.target.value })}
                         className={`${inputCls} appearance-none`}>
                         <option value="" className="bg-black">Izaberi vrstu biznisa...</option>
                         {bizTypes.map(b => <option key={b} value={b} className="bg-black">{b}</option>)}
@@ -1090,7 +1089,7 @@ function ContactSection() {
                     >
                       <label className="mb-2 block text-xs uppercase tracking-wider text-white/65">Poruka (opciono)</label>
                       <textarea placeholder="Opišite Vaš biznis i šta Vam je potrebno..."
-                        rows={4} value={form.msg} onChange={e => setForm({...form, msg: e.target.value})}
+                        rows={4} value={form.msg} onChange={e => setForm({ ...form, msg: e.target.value })}
                         className={`${inputCls} resize-none`} />
                     </motion.div>
 
