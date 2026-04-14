@@ -599,7 +599,7 @@ export default function BGRentACarCaseStudy() {
                 "Tailwind CSS",
                 "Supabase",
                 "Vercel",
-                "n8n Automatizacija",
+                "n8n Automatizacija/s",
                 "Responsive Design",
                 "Admin Auth",
               ].map((tag) => (

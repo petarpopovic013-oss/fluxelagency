@@ -530,9 +530,9 @@ const projects: Project[] = [
     tags: ["Rezervacije vozila", "Email podsećanja", "Admin Panel"],
     gradient: "from-blue-900/60 to-cyan-900/40",
     letter: "R",
-    testimonial: { quote: "Profesionalna saradnja i odlični rezultati, sve preporuke!", name: "Peđa D., vlasnik BG Rent A Car-a" },
+    testimonial: null,
     image: "/bgrc.png",
-    link: "https://bg-rentacar.vercel.app"
+    link: "https://rentacar-beograd.live"
   },
 ]
 
