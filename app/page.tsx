@@ -532,7 +532,7 @@ const projects: Project[] = [
     letter: "R",
     testimonial: null,
     image: "/bgrc.png",
-    link: "https://rentacar-beograd.live"
+    link: "https://rentacarbeograd.live"
   },
 ]
 
